@@ -1,0 +1,25 @@
+SAVED + SUPABASE  (sync across devices with a sync code, no email needed)
+
+ONE TIME, in Supabase
+1. Create a project at https://supabase.com (free plan is enough).
+2. SQL Editor > New query > paste supabase.sql (or tap Settings > Data > Database > "Copy setup SQL"
+   in the app and paste that) > Run. "Success. No rows returned" means it worked.
+3. Authentication > Sign In / Providers > Email: turn OFF "Confirm email".
+   (The app creates accounts from your sync code, so no real email is used.)
+4. Project Settings > API (or the Connect button): copy the Project URL and the publishable / anon key.
+   Never put the service_role / secret key in the app.
+
+IN THE APP (open it from your https address)
+1. Settings > Data > Database: paste the Project URL and key > Save.
+2. Settings > Data > Sync > "Create my sync code". Save the 16-character code somewhere safe
+   (Copy code). It is the only key to your data.
+3. On every other device: Database (same URL and key), then Sync > enter the code > Enable sync.
+
+HOW IT WORKS
+- The code is turned into a hidden account (email + password made from the code), so the same
+  code on any device opens the same data. Lose the code and the data cannot be recovered.
+- Offline first: the app works without internet and syncs when you are back online
+  (after every change, when you reopen the app, every minute, or Sync).
+- Items, deletes, card order, categories and your look all sync. Last change wins per item.
+- "Turn off sync on this device" keeps your items on the device and just stops syncing.
+- Optional: paste your URL and key into window.SB_DEFAULT in saved.html so new devices only need the code.
