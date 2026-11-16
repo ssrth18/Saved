@@ -1196,7 +1196,17 @@ if("serviceWorker"in navigator&&/^https?:/.test(location.protocol))addEventListe
   x.textAlign="center";
   if(c.head!=="off"){const caps=c.head==="caps",it=c.head==="italic",hs=+c.ts||30,al=c.tpos==="left",tc=(c.tcol&&c.tcol!=="ink")?c.tcol:c.ink,txt=((c.ttxt||"").trim())||p.h,y=T-W*.055;
    x.fillStyle=x.strokeStyle=tc;x.textAlign=al?"left":"center";
-   x.font=(it?"italic ":"")+fw+(caps?Math.round(hs*.8):hs)+"px "+fam;if(ls)x.letterSpacing=caps?"6px":"0px";x.fillText(caps?txt.slice(0,40).toUpperCase():txt.slice(0,48),al?W*.18:W/2,W*.115);if(ls)x.letterSpacing="0px";
+   const bs=caps?Math.round(hs*.8):hs,cw=W*.64,T0=caps?txt.slice(0,60).toUpperCase():txt.slice(0,80),tx=al?W*.18:W/2;
+   if(ls)x.letterSpacing=caps?"6px":"0px";
+   const ms=(t,z)=>{x.font=(it?"italic ":"")+fw+z+"px "+fam;return x.measureText(t).width};
+   let z=bs,L=[T0];
+   if(ms(T0,z)>cw){const mn=Math.max(14,bs*.72);z=Math.max(mn,bs*cw/ms(T0,bs));
+    if(ms(T0,z)>cw){z=mn;L=[];let cur="";T0.split(/\s+/).forEach(w=>{const n=cur?cur+" "+w:w;if(cur&&ms(n,z)>cw){L.push(cur);cur=w}else cur=n});L.push(cur);
+     if(L.length>2)L=[L[0],L.slice(1).join(" ")];
+     L=L.map(t=>{if(ms(t,z)<=cw)return t;while(t.length>3&&ms(t+"…",z)>cw)t=t.slice(0,-1).trimEnd();return t+"…"})}}
+   x.font=(it?"italic ":"")+fw+z+"px "+fam;
+   if(L.length===1)x.fillText(L[0],tx,W*.115);else{const b1=W*.092;x.fillText(L[0],tx,b1);x.fillText(L[1],tx,b1+z*1.15)}
+   if(ls)x.letterSpacing="0px";
    x.save();if(al)x.translate(W*.18+W*.1-W/2,0);
    x.globalAlpha=.7;x.lineWidth=1.5;x.beginPath();
    if(c.div==="line"){x.moveTo(W*.44,y);x.lineTo(W*.56,y);x.stroke()}
