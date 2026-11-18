@@ -646,13 +646,13 @@ const xfmt=t=>esc(t).replace(/(https?:\/\/[^\s<]+)/g,'<span class="xmn">$1</span
 const xdate=t=>{const d=new Date(t),y=d.getFullYear()===new Date().getFullYear();return d.toLocaleDateString(undefined,y?{day:"numeric",month:"short"}:{day:"numeric",month:"short",year:"numeric"})};
 const VB='<svg class="vb" viewBox="0 0 24 24" aria-label="Verified"><path d="M12 2l2.4 1.7 2.9-.2 1.2 2.7 2.5 1.5-.5 2.9L21.6 12l-1.1 2.4.5 2.9-2.5 1.5-1.2 2.7-2.9-.2L12 22l-2.4-1.7-2.9.2-1.2-2.7L3 16.3l.5-2.9L2.4 12l1.1-2.4L3 6.7l2.5-1.5 1.2-2.7 2.9.2z"/><path d="M8.5 12.3l2.3 2.3 4.7-4.9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function xcard(m){const ph=(m.ph&&m.ph.length?m.ph:(m.i?[m.i]:[])),im=u=>`<img src="${esc(u)}" alt="" loading="lazy" referrerpolicy="no-referrer">`,
- media=ph.length?`<div class="xmd n${Math.min(ph.length,4)}">${ph.map(im).join("")}</div>`:(m.vu?(m.vg?`<div class="xmd n1 xvw"><video src="${esc(m.vu)}" poster="${esc(m.vt||"")}" autoplay loop muted playsinline preload="auto" onerror="this.parentNode.classList.add('bad')"></video></div>`:`<div class="xmd n1 xvw"><video src="${esc(m.vu)}" poster="${esc(m.vt||"")}" controls playsinline preload="none" onerror="this.parentNode.classList.add('bad')"></video></div>`):(m.vt?`<button class="xmd n1 xvid" data-a="q" data-q="open" aria-label="Open video">${im(m.vt)}<i></i></button>`:"")),
+ media=ph.length?`<div class="xmd n${Math.min(ph.length,4)}">${ph.map(im).join("")}</div>`:(m.vu?(m.vg?`<div class="xmd n1 xvw" style="aspect-ratio:${m.vr||"16/9"}"><video src="${esc(m.vu)}" poster="${esc(m.vt||"")}" autoplay loop muted playsinline preload="auto" onloadedmetadata="this.parentNode.style.aspectRatio=this.videoWidth+'/'+this.videoHeight" onerror="this.parentNode.classList.add('bad')"></video></div>`:`<div class="xmd n1 xvw" style="aspect-ratio:${m.vr||"16/9"}"><video src="${esc(m.vu)}" poster="${esc(m.vt||"")}" controls playsinline preload="metadata" onloadedmetadata="this.parentNode.style.aspectRatio=this.videoWidth+'/'+this.videoHeight" onerror="this.parentNode.classList.add('bad')"></video></div>`):(m.vt?`<button class="xmd n1 xvid" data-a="q" data-q="open" aria-label="Open video">${im(m.vt)}<i></i></button>`:"")),
  st=[[m.r,"replies",'<path d="M4 5h16v11H9l-5 4z"/>'],[m.rt,"reposts",'<path d="M4 11V9a3 3 0 013-3h11l-3-3M20 13v2a3 3 0 01-3 3H6l3 3"/>'],[m.l,"likes",'<path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/>'],[m.vw,"views",'<path d="M5 20V12M12 20V5M19 20v-5"/>']].filter(x=>+x[0]>0).map(([n,l,d])=>`<span class="pl xs" title="${l}" aria-label="${num(n)} ${l}"><svg viewBox="0 0 24 24"${l==="likes"?' class="lk2"':""}>${d}</svg>${num(n)}</span>`).join("");
- return`<div class="xpc"><div class="xph">${m.a?`<img src="${esc(m.a)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'<span class="av"></span>'}<div class="xpn"><b>${esc(m.n)}${m.vf?VB:""}</b><span>@${esc(m.h)}${m.ts?" · "+xdate(m.ts):""}</span></div></div><p class="xpt">${xfmt(m.t)}</p>${media}${m.q?`<div class="xq"><b>${esc(m.q.n)}</b> <span>@${esc(m.q.h)}</span><p>${xfmt(m.q.t)}</p></div>`:""}${st?`<div class="mt xps">${st}</div>`:""}</div>`}
+ return`<div class="xpc"><div class="xph">${m.a?`<img src="${esc(m.a)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'<span class="av"></span>'}<div class="xpn"><b>${esc(m.n)}${m.vf?VB:""}</b><span>@${esc(m.h)}${m.ts?" · "+xdate(m.ts):""}</span></div></div><p class="xpt">${xfmt((ph.length||m.vu||m.vt)?m.t.replace(/\s*https:\/\/t\.co\/\S+\s*$/,""):m.t)}</p>${media}${m.q?`<div class="xq"><b>${esc(m.q.n)}</b> <span>@${esc(m.q.h)}</span><p>${xfmt(m.q.t)}</p></div>`:""}${st?`<div class="mt xps">${st}</div>`:""}</div>`}
 function body(i){let h="";const y=i.type==="yt"&&ytId(i.url),x=i.type==="x"&&xId(i.url),g=i.type==="ig"&&igId(i.url);
  if(y)h+=`<button class="yt" data-a="play" data-v="${y}" aria-label="Play video"><img src="https://i.ytimg.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy" decoding="async"><i></i><b>YOUTUBE</b></button>`;
  if(x){const m=i.meta;h+=m?xcard(m):`<p class="xpt" style="color:var(--mu)">Loading post…</p>`}
- if(g)h+=`<iframe class="ig" src="https://www.instagram.com/${g.k}/${g.id}/embed/" loading="lazy" title="Instagram post" scrolling="no"></iframe>`;
+ if(g){const fr=`<iframe class="ig ${g.k==="p"?"po":"rl"}" src="https://www.instagram.com/${g.k}/${g.id}/embed/" loading="lazy" title="Instagram ${g.k==="p"?"post":"reel"}" scrolling="no" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;h+=g.k==="p"?fr:`<div class="igw">${fr}</div>`}
  if(i.text)h+=sc((i.type==="word"||(i.cat==="Words"&&!i.url))?"Meaning":"Note","var(--ac)",`<p>${linkify(i.text)}</p>`);
  (i.f||[]).forEach(([k,v])=>{if(v)h+=sc(k,hc(k),`<p>${linkify(v)}</p>`)});
  return`<div class="bd">${h}</div>`}
@@ -679,8 +679,8 @@ const one=id=>{const i=D.find(x=>x.id===id),el=document.querySelector(`[data-id=
 /* enrich */
 async function fx(i){const x=xId(i.url);if(!x||(i.meta&&i.meta.v===3)||i.busy)return;i.busy=1;try{const j=(await(await fetch(`https://api.fxtwitter.com/${x.u}/status/${x.id}`)).json()).tweet;if(!j)throw 0;
  const t=[j.text,j.raw_text&&j.raw_text.text].filter(Boolean).sort((p,q)=>q.length-p.length)[0]||"",ph=((j.media&&j.media.photos)||[]).map(p=>p.url).filter(Boolean).slice(0,4),vd=j.media&&j.media.videos&&j.media.videos[0],au=j.author||{},q=j.quote?{n:(j.quote.author&&j.quote.author.name)||"",h:(j.quote.author&&j.quote.author.screen_name)||"",t:j.quote.text||""}:null;
- i.meta={v:3,vu:(vd&&vd.url)||"",vg:vd&&vd.type==="gif"?1:0,n:au.name||x.u,h:au.screen_name||x.u,a:au.avatar_url||"",t,i:ph[0]||"",ph,vt:vd?(vd.thumbnail_url||""):"",l:j.likes??0,r:j.replies??0,rt:j.retweets??0,vw:j.views??0,ts:j.created_timestamp?j.created_timestamp*1000:(Date.parse(j.created_at)||0),vf:!!((au.verification&&au.verification.verified)||au.verified),q};
- if(i.auto)i.title=(i.meta.n+": "+i.meta.t).replace(/\s+/g," ").slice(0,80)}catch{if(!(i.meta&&i.meta.t))i.meta={n:x.u,h:x.u,a:"",t:"Preview unavailable. Tap Open to read the post.",i:"",f:1}}i.busy=0;save();one(i.id)}
+ i.meta={v:3,vu:(vd&&vd.url)||"",vg:vd&&vd.type==="gif"?1:0,vr:vd&&vd.width&&vd.height?+(vd.width/vd.height).toFixed(4):0,n:au.name||x.u,h:au.screen_name||x.u,a:au.avatar_url||"",t,i:ph[0]||"",ph,vt:vd?(vd.thumbnail_url||""):"",l:j.likes??0,r:j.replies??0,rt:j.retweets??0,vw:j.views??0,ts:j.created_timestamp?j.created_timestamp*1000:(Date.parse(j.created_at)||0),vf:!!((au.verification&&au.verification.verified)||au.verified),q};
+ if(i.auto)i.title=(i.meta.n+": "+i.meta.t).replace(/https?:\/\/\S+/g,"").replace(/\s+/g," ").trim().slice(0,80)}catch{if(!(i.meta&&i.meta.t))i.meta={n:x.u,h:x.u,a:"",t:"Preview unavailable. Tap Open to read the post.",i:"",f:1}}i.busy=0;save();one(i.id)}
 async function yn(i){try{const j=await(await fetch("https://noembed.com/embed?url="+encodeURIComponent(i.url))).json();if(j.title){i.title=j.title.slice(0,120);save();one(i.id)}}catch{}}
 
 /* build an item (not stored yet) */
@@ -900,16 +900,18 @@ if(!S.v44){S.v44=1;S.ff="brico";save()}
 /* v4.5 clipboard watcher: copied links are detected when the app opens or regains focus */
 if(S.clip===undefined)S.clip="auto";
 SCH.layout.push(H("Clipboard"),["clip","Copied links","seg",[["auto","Auto-save"],["ask","Ask"],["off","Off"]]]);
-document.body.insertAdjacentHTML("beforeend",'<div class="cbn" id="cb" hidden><span></span><button type="button" id="cbb"></button><button type="button" class="x" id="cbx" aria-label="Dismiss">×</button></div>');
-let cbt,cbf=null;const cbHide=()=>{$("#cb").hidden=true;clearTimeout(cbt)};
-function cbShow(m,l,fn){$("#cb span").textContent=m;$("#cbb").textContent=l;cbf=fn;$("#cb").hidden=false;clearTimeout(cbt);cbt=setTimeout(cbHide,6000)}
-$("#cbb").onclick=()=>{const f=cbf;cbHide();f&&f()};$("#cbx").onclick=cbHide;
+document.body.insertAdjacentHTML("beforeend",'<div class="cbn" id="cb" hidden role="status"><div class="cbh"><span class="cbi" id="cbi"></span><div class="cbt"><small id="cbl"></small><b id="cbu"></b></div><button type="button" class="x" id="cbx" aria-label="Dismiss">×</button></div><div class="cbr"><button type="button" class="p" id="cbb"></button><button type="button" id="cb2"></button></div></div>');
+let cbt,cbf=null,cbg=null;const cbHide=()=>{$("#cb").hidden=true;clearTimeout(cbt)},cbTimer=ms=>{clearTimeout(cbt);cbt=setTimeout(cbHide,ms)};
+function cbShow(o){$("#cbl").textContent=o.label;$("#cbu").textContent=o.text;$("#cbi").innerHTML=o.icon||"";$("#cbb").textContent=o.a[0];cbf=o.a[1];$("#cb2").textContent=o.b[0];cbg=o.b[1];const c=$("#cb");c.hidden=false;c.classList.remove("in");void c.offsetWidth;c.classList.add("in");cbTimer(9000)}
+$("#cbb").onclick=()=>{const f=cbf;cbHide();f&&f()};$("#cb2").onclick=()=>{const f=cbg;cbHide();f&&f()};$("#cbx").onclick=cbHide;
+$("#cb").addEventListener("pointerdown",()=>clearTimeout(cbt));["pointerup","pointercancel"].forEach(t=>$("#cb").addEventListener(t,()=>{if(!$("#cb").hidden)cbTimer(5000)}));
 async function clip(){if(S.clip==="off"||document.hidden||!document.hasFocus()||document.querySelector("dialog[open]")||selM)return;
  let t="";try{t=((await navigator.clipboard.readText())||"").trim()}catch{return}
  const u=(t.match(/https?:\/\/[^\s]+/)||[""])[0].replace(/[.,;:!?)\]]+$/,"");if(!u||localStorage.ls_clip===t)return;localStorage.ls_clip=t;
  const cu=clean(u);if(D.some(x=>x.url===cu))return;
- if(S.clip==="auto"){const it=mk(t,"","auto");if(!it)return;it.cat="";put(it,true);cbShow("Saved from "+src(cu),"Undo",()=>{D=D.filter(x=>x.id!==it.id);save();draw()})}
- else cbShow("Copied: "+src(cu),"Save",()=>ask(t,""))}
+ const shown=cu.replace(/^https?:\/\/(www\.)?/,""),it=mk(t,"","auto");if(!it)return;
+ if(S.clip==="auto"){it.cat="";put(it,true);cbShow({label:"Saved to your list",text:shown,icon:tile(it),a:["Undo",()=>{D=D.filter(x=>x.id!==it.id);save();draw()}],b:["Edit",()=>act("edit",it.id)]})}
+ else cbShow({label:"Copied link",text:shown,icon:tile(it),a:["Save",()=>{it.cat="";put(it,true)}],b:["Add details",()=>ask(t,"")]})}
 addEventListener("focus",()=>setTimeout(clip,250));document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout(clip,250)});setTimeout(clip,900);
 /* v8: header styles, section markers, preset looks, redesigned settings */
 {Object.keys(PAL).forEach(k=>delete PAL[k]);
@@ -1525,5 +1527,37 @@ body[data-cs=dark] .r.sl{background:color-mix(in srgb,var(--ac) 14%,#0c0d11)}
 /* X posts: videos play inside the card */
 .xvw video{width:100%;max-height:440px;display:block;background:#000;object-fit:contain}
 .xvw.bad::after{content:"Can\2019t play here. Tap Open to watch on X.";display:block;padding:12px;color:var(--mu);font-size:.85em;text-align:center}
+/* copied-link prompt: card at the top (never hidden by Android's clipboard notice) */
+.cbn{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 62px);bottom:auto;transform:translateX(-50%);width:min(560px,calc(100vw - 20px));max-width:none;z-index:120;display:block;padding:14px;gap:0;border-radius:26px;background:color-mix(in srgb,var(--sf) 94%,var(--tx));color:var(--tx);border:1px solid var(--bd);box-shadow:0 18px 40px -12px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.18);font-size:1em;font-weight:500;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.cbn[hidden]{display:none}
+.cbn.in{animation:cbin .32s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes cbin{from{opacity:0;transform:translate(-50%,-18px) scale(.97)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+.cbh{display:flex;align-items:center;gap:12px}
+.cbi{flex:none;width:48px;height:48px;border-radius:15px;overflow:hidden;display:grid;place-items:center}
+.cbi .ic{width:48px;height:48px;font-size:22px;border-radius:15px;margin:0}
+.cbt{flex:1;min-width:0}
+.cbt small{display:block;font:700 11px var(--ff,system-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+.cbt b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;font-weight:700;font-size:1.05em;line-height:1.25;margin-top:2px}
+.cbn .x{flex:none;width:36px;height:36px;padding:0;border-radius:50%;background:var(--fl);color:var(--tx);font-size:20px;line-height:1;display:grid;place-items:center}
+.cbr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.cbr button{height:48px;padding:0 12px;border-radius:16px;background:var(--fl);color:var(--tx);font:700 15px var(--ff,system-ui);text-transform:none;letter-spacing:0}
+.cbr button.p{background:linear-gradient(135deg,var(--ac),var(--ac2,var(--ac)));color:var(--on,#fff)}
+.cbr button:active{transform:scale(.98)}
+@media(prefers-reduced-motion:reduce){.cbn.in{animation:none}}
+/* media: video, embeds and photos fit all four sides with equal gaps */
+.r .bd{margin:0!important;padding:12px 14px 14px!important;container-type:inline-size}
+.bd>.sc:first-child{margin-top:-4px!important}
+.bd>*+*{margin-top:12px}
+.bd .yt,.bd .ig,.bd .xmd,.bd .xvw{width:100%;max-width:none;margin-left:0;margin-right:0;box-sizing:border-box}
+.bd .yt{aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+.bd .yt img,.bd .yt iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
+.bd .ig{display:block;border-radius:14px;overflow:hidden;background:#fff;height:calc(100cqw*1.78 + 128px)}
+.bd .ig.po{height:calc(100cqw*1.3 + 128px)}
+.bd .xvw{background:#000;border:0;max-height:78vh}
+.bd .xvw video{width:100%;height:100%;max-height:none;object-fit:contain;display:block;background:#000}
+.bd .xmd img{display:block}
+/* Instagram reels: full-width 9:16 video, no black side bars, no header/footer clutter */
+.bd .igw{position:relative;width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:14px;background:#000}
+.bd .igw iframe.ig{position:absolute;left:0;top:0;width:100cqw;max-width:none;height:calc(100cqw*1.78 + 140px);border-radius:0;background:#000;transform-origin:0 0;transform:translate(-21.5cqw,-25.5cqw) scale(1.43)}
 </style>
 </body></html>
