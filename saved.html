@@ -4,6 +4,9 @@
 <meta name="theme-color" content="#f3efe7">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Saved">
 <link rel="manifest" href="saved.webmanifest"><link rel="apple-touch-icon" href="icons/saved-apple.png"><link rel="icon" href="icons/saved-192.png">
+<meta name="description" content="Saved: a private, offline-first place to keep links, notes, words and posts. Everything stays on your device.">
+<meta name="color-scheme" content="light dark"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website"><meta property="og:title" content="Saved"><meta property="og:description" content="A private, offline-first place to keep links, notes, words and posts."><meta property="og:image" content="icons/saved-192.png">
 <title>Saved</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=EB+Garamond:ital@0;1&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital@0;1&family=Dancing+Script:wght@500&family=Courier+Prime:ital@0;1&family=Cinzel:wght@500&family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&family=Outfit:wght@400;600;700&family=Sora:wght@400;600;700&family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Manrope:wght@400;600;700&family=Nunito:wght@400;600;700&family=Figtree:wght@400;600;700&family=Lexend:wght@400;600;700&family=Bricolage+Grotesque:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:wght@400;600;700&family=Literata:wght@400;600;700&family=Source+Serif+4:wght@400;600;700&family=Merriweather:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Space+Mono:wght@400;700&family=Patrick+Hand&display=swap" media="print" onload="this.media='all'">
 <link rel="preconnect" href="https://i.ytimg.com" crossorigin><link rel="preconnect" href="https://www.google.com"><link rel="preconnect" href="https://t1.gstatic.com" crossorigin>
@@ -519,7 +522,8 @@ body[data-vw=grid] .r,body[data-vw=grid] .r.o{box-shadow:none!important;backgrou
 .mnp.x .xg button:active{background:var(--ac);color:var(--on);border-color:var(--ac)}
 .xg button:active i{background:rgba(255,255,255,.25);color:inherit}
 </style></head>
-<body><div id="wp"></div><canvas id="fx"></canvas>
+<body>
+<noscript><div style="padding:24px;font:16px system-ui;color:#222">Saved needs JavaScript to run. Please enable it in your browser settings.</div></noscript><div id="wp"></div><canvas id="fx"></canvas>
 <div class="top">
  <header><div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" stroke-width="3.2"><circle cx="12" cy="12" r="5.5"/></svg></div><h1>Saved</h1>
   <button class="ib" id="shb" aria-label="Shuffle theme"><svg viewBox="0 0 24 24"><path d="M3 6h3.5c4 0 5 12 9 12H20M3 18h3.5c1.5 0 2.700-.7 3.700-1.900M13.800 7.900C14.800 6.700 16 6 17.500 6H20M17 3l3 3-3 3M17 15l3 3-3 3"/></svg></button><button class="ib" id="htb" aria-label="Save this look"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.400-7-10a4 4 0 017-2.600A4 4 0 0119 10c0 5.600-7 10-7 10z"/></svg></button><button class="ib" id="sbtn" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
@@ -586,7 +590,7 @@ const DEFS=JSON.parse(JSON.stringify(DEF));
 let D=[],S={...DEF,hd:[],cc:{},co:[]},anim=true,at;
 try{D=JSON.parse(localStorage[K]||"[]");Object.assign(S,JSON.parse(localStorage[KS]||"{}"))}catch{}
 if(!Array.isArray(D))D=[];D=D.filter(x=>x&&typeof x==="object"&&x.id);
-D.forEach(i=>{if(!i.cat&&!i.url&&(i.type==="note"||i.type==="word"))i.cat=i.type==="word"?"Words":"Notes"});
+
 if(S.cm==="both"||S.cm==="stripe")S.cm="pill";if(S.bg==="glow"||S.bg==="wash")S.bg="dots";if(S.ff==="rounded")S.ff="round";if(!S.v34){S.v34=1;S.vw="list"}
 let f="all",tf="all",q="",edit=null,mode="auto",FL=[],pend=null,pcat="",st,tt;const flip=new Set();let selM=false,sel=new Set();
 const save=()=>{clearTimeout(st);st=setTimeout(()=>{try{localStorage[K]=JSON.stringify(D.map(({busy,...r})=>r));localStorage[KS]=JSON.stringify(S)}catch{toast("Storage is full. Export a backup.")}window.sbPush&&window.sbPush()},120)};
@@ -642,7 +646,7 @@ const xfmt=t=>esc(t).replace(/(https?:\/\/[^\s<]+)/g,'<span class="xmn">$1</span
 const xdate=t=>{const d=new Date(t),y=d.getFullYear()===new Date().getFullYear();return d.toLocaleDateString(undefined,y?{day:"numeric",month:"short"}:{day:"numeric",month:"short",year:"numeric"})};
 const VB='<svg class="vb" viewBox="0 0 24 24" aria-label="Verified"><path d="M12 2l2.4 1.7 2.9-.2 1.2 2.7 2.5 1.5-.5 2.9L21.6 12l-1.1 2.4.5 2.9-2.5 1.5-1.2 2.7-2.9-.2L12 22l-2.4-1.7-2.9.2-1.2-2.7L3 16.3l.5-2.9L2.4 12l1.1-2.4L3 6.7l2.5-1.5 1.2-2.7 2.9.2z"/><path d="M8.5 12.3l2.3 2.3 4.7-4.9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function xcard(m){const ph=(m.ph&&m.ph.length?m.ph:(m.i?[m.i]:[])),im=u=>`<img src="${esc(u)}" alt="" loading="lazy" referrerpolicy="no-referrer">`,
- media=ph.length?`<div class="xmd n${Math.min(ph.length,4)}">${ph.map(im).join("")}</div>`:(m.vt?`<button class="xmd n1 xvid" data-a="q" data-q="open" aria-label="Open video">${im(m.vt)}<i></i></button>`:""),
+ media=ph.length?`<div class="xmd n${Math.min(ph.length,4)}">${ph.map(im).join("")}</div>`:(m.vu?(m.vg?`<div class="xmd n1 xvw"><video src="${esc(m.vu)}" poster="${esc(m.vt||"")}" autoplay loop muted playsinline preload="auto" onerror="this.parentNode.classList.add('bad')"></video></div>`:`<div class="xmd n1 xvw"><video src="${esc(m.vu)}" poster="${esc(m.vt||"")}" controls playsinline preload="none" onerror="this.parentNode.classList.add('bad')"></video></div>`):(m.vt?`<button class="xmd n1 xvid" data-a="q" data-q="open" aria-label="Open video">${im(m.vt)}<i></i></button>`:"")),
  st=[[m.r,"replies",'<path d="M4 5h16v11H9l-5 4z"/>'],[m.rt,"reposts",'<path d="M4 11V9a3 3 0 013-3h11l-3-3M20 13v2a3 3 0 01-3 3H6l3 3"/>'],[m.l,"likes",'<path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/>'],[m.vw,"views",'<path d="M5 20V12M12 20V5M19 20v-5"/>']].filter(x=>+x[0]>0).map(([n,l,d])=>`<span class="pl xs" title="${l}" aria-label="${num(n)} ${l}"><svg viewBox="0 0 24 24"${l==="likes"?' class="lk2"':""}>${d}</svg>${num(n)}</span>`).join("");
  return`<div class="xpc"><div class="xph">${m.a?`<img src="${esc(m.a)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'<span class="av"></span>'}<div class="xpn"><b>${esc(m.n)}${m.vf?VB:""}</b><span>@${esc(m.h)}${m.ts?" · "+xdate(m.ts):""}</span></div></div><p class="xpt">${xfmt(m.t)}</p>${media}${m.q?`<div class="xq"><b>${esc(m.q.n)}</b> <span>@${esc(m.q.h)}</span><p>${xfmt(m.q.t)}</p></div>`:""}${st?`<div class="mt xps">${st}</div>`:""}</div>`}
 function body(i){let h="";const y=i.type==="yt"&&ytId(i.url),x=i.type==="x"&&xId(i.url),g=i.type==="ig"&&igId(i.url);
@@ -665,7 +669,7 @@ function list(){const s=q.toLowerCase(),ci=S.sort==="manual"?(a,b)=>(a.o??-a.ts)
 function tabs(){const c=cats(),un=D.filter(i=>!i.cat&&!i.done).length,nd=D.filter(i=>i.done).length,WV=`<button class="chip wv" data-wv aria-label="${S.exp?"Collapse all":"Expand all"}"><svg viewBox="0 0 24 24">${S.exp?'<path d="M7 8l5-4 5 4M7 16l5 4 5-4M4 12h16"/>':'<path d="M7 4l5 4 5-4M7 20l5-4 5 4M4 12h16"/>'}</svg></button>`;
  $("#tabs").innerHTML=`<button class="chip${f==="all"?" on":""}" data-f="all">All<b>${D.length-nd}</b></button>`+c.map(([k,n])=>`<button class="chip c${f===k?" on":""}" style="--cc:${ccol(k)}" data-f="${esc(k)}">${esc(k)}<b>${n}</b></button>`).join("")+(un&&c.length?`<button class="chip${f===""?" on":""}" data-f="">Other<b>${un}</b></button>`:"")+`<button class="chip c${f==="__done"?" on":""}" style="--cc:#22c55e" data-f="__done">Done<b>${nd}</b></button>`+WV;
  {const t=$("#tabs"),a=t.querySelector(".chip.on");if(a)t.scrollLeft+=a.getBoundingClientRect().left-t.getBoundingClientRect().left-(t.clientWidth-a.offsetWidth)/2}$("#fb").classList.toggle("on",tf!=="all");$("#fb").setAttribute("aria-label",tf==="all"?"Filter by type":"Filtering: "+(TYP.find(x=>x[0]===tf)||[])[1])}
-function draw(){if(!window.__mig){window.__mig=1;let ch=0;D.forEach(i=>{if(!i.cat&&!i.url&&(i.type==="note"||i.type==="word")){i.cat=i.type==="word"?"Words":"Notes";ch=1}});if(ch)save()}ensureCC();if(f!=="all"&&f!==""&&f!=="__done"&&!D.some(i=>i.cat===f)&&!["Notes","Words"].includes(f))f="all";tabs();const v=list(),L=$("#list"),cn=cats().map(x=>x[0]);let h;
+function draw(){if(!S.v76){S.v76=1;const mv=D.filter(i=>i.url&&(i.cat==="Notes"||i.cat==="Words")),was=mv.map(i=>i.cat);if(mv.length){mv.forEach(i=>i.cat="");save();setTimeout(()=>{try{cbShow("Moved "+mv.length+" saved link"+(mv.length>1?"s":"")+" out of Notes/Words","Undo",()=>{mv.forEach((i,n)=>i.cat=was[n]);save();draw()})}catch(e){}},900)}}if(!window.__mig){window.__mig=1;let ch=0;if(ch)save()}ensureCC();if(f!=="all"&&f!==""&&f!=="__done"&&!D.some(i=>i.cat===f)&&!["Notes","Words"].includes(f))f="all";tabs();const v=list(),L=$("#list"),cn=cats().map(x=>x[0]);let h;
  if(!v.length)h=`<div class="em"><h3>${f==="__done"&&!q?"Nothing done yet":D.length?"No matches":"Nothing saved yet"}</h3>${f==="__done"&&!q?"Mark a card Done and it moves here.":D.length?"Try another word, type or category.":"Share a link into this app, paste one, or tap + to write a note."}</div>`;
  else if(S.group==="cat"&&f==="all"&&!q&&cn.length&&tf!=="done"){const by={};v.forEach(i=>(by[i.cat||""]=by[i.cat||""]||[]).push(i));let n=0;h=[...cn,""].map(c=>by[c]?`<h2 class="cg" style="--cc:${c?ccol(c):"#7b8794"}"><i></i>${esc(c||"Other")}<small>${by[c].length}</small></h2>`+by[c].map(i=>row(i,n++)).join(""):"").join("")}
  else h=v.map(row).join("");
@@ -673,9 +677,9 @@ function draw(){if(!window.__mig){window.__mig=1;let ch=0;D.forEach(i=>{if(!i.ca
 const one=id=>{const i=D.find(x=>x.id===id),el=document.querySelector(`[data-id="${id}"]`);if(i&&el)el.outerHTML=row(i)};
 
 /* enrich */
-async function fx(i){const x=xId(i.url);if(!x||(i.meta&&i.meta.v===2)||i.busy)return;i.busy=1;try{const j=(await(await fetch(`https://api.fxtwitter.com/${x.u}/status/${x.id}`)).json()).tweet;if(!j)throw 0;
+async function fx(i){const x=xId(i.url);if(!x||(i.meta&&i.meta.v===3)||i.busy)return;i.busy=1;try{const j=(await(await fetch(`https://api.fxtwitter.com/${x.u}/status/${x.id}`)).json()).tweet;if(!j)throw 0;
  const t=[j.text,j.raw_text&&j.raw_text.text].filter(Boolean).sort((p,q)=>q.length-p.length)[0]||"",ph=((j.media&&j.media.photos)||[]).map(p=>p.url).filter(Boolean).slice(0,4),vd=j.media&&j.media.videos&&j.media.videos[0],au=j.author||{},q=j.quote?{n:(j.quote.author&&j.quote.author.name)||"",h:(j.quote.author&&j.quote.author.screen_name)||"",t:j.quote.text||""}:null;
- i.meta={v:2,n:au.name||x.u,h:au.screen_name||x.u,a:au.avatar_url||"",t,i:ph[0]||"",ph,vt:vd?(vd.thumbnail_url||""):"",l:j.likes??0,r:j.replies??0,rt:j.retweets??0,vw:j.views??0,ts:j.created_timestamp?j.created_timestamp*1000:(Date.parse(j.created_at)||0),vf:!!((au.verification&&au.verification.verified)||au.verified),q};
+ i.meta={v:3,vu:(vd&&vd.url)||"",vg:vd&&vd.type==="gif"?1:0,n:au.name||x.u,h:au.screen_name||x.u,a:au.avatar_url||"",t,i:ph[0]||"",ph,vt:vd?(vd.thumbnail_url||""):"",l:j.likes??0,r:j.replies??0,rt:j.retweets??0,vw:j.views??0,ts:j.created_timestamp?j.created_timestamp*1000:(Date.parse(j.created_at)||0),vf:!!((au.verification&&au.verification.verified)||au.verified),q};
  if(i.auto)i.title=(i.meta.n+": "+i.meta.t).replace(/\s+/g," ").slice(0,80)}catch{if(!(i.meta&&i.meta.t))i.meta={n:x.u,h:x.u,a:"",t:"Preview unavailable. Tap Open to read the post.",i:"",f:1}}i.busy=0;save();one(i.id)}
 async function yn(i){try{const j=await(await fetch("https://noembed.com/embed?url="+encodeURIComponent(i.url))).json();if(j.title){i.title=j.title.slice(0,120);save();one(i.id)}}catch{}}
 
@@ -685,14 +689,14 @@ function mk(raw,title,m,old){raw=(raw||"").trim();title=(title||"").trim();if(!r
  if(m==="word"){it.type="word";it.url="";it.title=title||ls[0].slice(0,60);it.text=title?raw:ls.slice(1).join("\n").trim()}
  else if(u&&m!=="note"){const cu=clean(u);if(!old&&D.some(x=>x.url===cu)){toast("Already saved");return null}it.url=cu;it.type=kind(cu);it.text=raw.replace(u,"").trim();it.auto=!title;it.title=title||host(cu)+new URL(cu).pathname.replace(/\/$/,"").slice(0,40)}
  else{it.type="note";it.url="";it.title=title||ls[0].slice(0,60);it.text=title?raw:ls.slice(1).join("\n").trim()}
- if(!old&&!it.cat)it.cat=it.type==="word"?"Words":it.type==="note"?"Notes":"";return it}
-function put(it,isNew){if(!it.cat&&!it.url&&(it.type==="note"||it.type==="word"))it.cat=it.type==="word"?"Words":"Notes";if(isNew)D.unshift(it);save();if(it.type==="x"&&!it.meta)fx(it);if(it.type==="yt"&&it.auto&&isNew)yn(it);if(f!=="all"&&f!==it.cat)f="all";if(tf!=="all"&&tf!=="done"&&tf!==it.type)tf="all";draw()}
+ if(!old&&!it.cat)it.cat=m==="word"?"Words":m==="note"?"Notes":"";return it}
+function put(it,isNew){if(isNew)D.unshift(it);save();if(it.type==="x"&&!it.meta)fx(it);if(it.type==="yt"&&it.auto&&isNew)yn(it);if(f!=="all"&&f!==it.cat)f="all";if(tf!=="all"&&tf!=="done"&&tf!==it.type)tf="all";draw()}
 
 /* ask before saving: choose category */
 function ask(raw,title,m,move){let it=move||mk(raw,title,m||"auto");if(!it)return;pend={it,move:!!move};pcat=it.cat||"";
  $("#ct2").textContent=move?"Move to":"Save to";$("#cpw").innerHTML=tile(it);$("#cpt").textContent=it.title;$("#cps").textContent=(it.url?src(it.url)+" · ":"")+TL[it.type];
  $("#cdt").hidden=!!move;$("#cok").textContent=move?"Move":"Save";$("#cn").value="";ccDraw();$("#cdlg").showModal()}
-function ccDraw(){$("#cc").innerHTML=`<button class="chip s${pcat?"":" on"}" data-c="">No category</button>`+cats().map(([k])=>`<button class="chip s c${pcat===k?" on":""}" style="--cc:${ccol(k)}" data-c="${esc(k)}">${esc(k)}</button>`).join("")}
+function ccDraw(){$("#cc").innerHTML=`<button class="chip s${pcat?"":" on"}" data-c="">All</button>`+cats().map(([k])=>`<button class="chip s c${pcat===k?" on":""}" style="--cc:${ccol(k)}" data-c="${esc(k)}">${esc(k)}</button>`).join("")}
 $("#cc").onclick=e=>{const b=e.target.closest("[data-c]");if(b){pcat=b.dataset.c;$("#cn").value="";ccDraw()}};
 $("#cn").oninput=e=>{pcat=e.target.value.trim();ccDraw()};
 $("#cc0").onclick=()=>{pend=null;$("#cdlg").close()};
@@ -725,7 +729,7 @@ function openD(id,dr){edit=id||null;draft=dr||null;const i=id?D.find(x=>x.id===i
  $("#in").value="";$("#lk").value=i?.url||"";$("#ti").value=i&&!i.auto?i.title:"";$("#ct").value=i?i.cat||"":"";FL=(i?.f||[]).map(x=>[x[0],x[1]]);if(!i)FL=[];else if(i.text)FL.unshift([(i.type==="word"||(i.cat==="Words"&&!i.url))?"Meaning":"Note",i.text]);$("#hp").hidden=false;$("#hrow").hidden=true;$("#dl").hidden=!id;newc=0;csDraw();flDraw();$("#more").open=!!(i&&(!i.auto&&i.title));hint();EMJ=i?.em||"";emDraw();hint();$("#dlg").showModal();if(!i)$("#in").focus()}
 $("#lk").addEventListener("input",hint);$("#ti").addEventListener("input",hint);$("#dlg").addEventListener("click",e=>{if(e.target===$("#dlg"))$("#dlg").close()});$("#cx2").onclick=()=>$("#dlg").close();$("#add").onclick=()=>openD();$("#cx").onclick=()=>$("#dlg").close();
 $("#sv").onclick=()=>{const nI=FL.find(x=>x[0]==="Note")||(mode==="word"?FL.find(x=>x[0]==="Meaning"):null);$("#in").value=[$("#lk").value.trim(),(nI?nI[1]:"").trim()].filter(Boolean).join("\n");if(!$("#in").value.trim()&&!$("#ti").value.trim()){const z=FL.find(x=>x!==nI&&x[1].trim());if(z)$("#ti").value=z[1].trim().split("\n")[0].slice(0,60)}const old=edit&&D.find(x=>x.id===edit),base=old||(draft&&{...draft}),it=mk($("#in").value,$("#ti").value,mode,base&&{...base});if(!it){if(!$("#in").value.trim()&&!$("#ti").value.trim()){if(edit)toast("Add a link or a note first");else $("#dlg").close()}return}
- const nw=!old;if(draft&&!old){it.id=draft.id;it.ts=draft.ts}it.cat=$("#ct").value.trim().slice(0,30);if(!it.cat&&!it.url&&(it.type==="note"||it.type==="word"))it.cat=it.type==="word"?"Words":"Notes";S.last=it.cat;if(EMJ)it.em=EMJ;else delete it.em;it.f=FL.filter(x=>x!==nI&&x[1].trim());if(old)Object.assign(old,it);else if(!nw){}
+ const nw=!old;if(draft&&!old){it.id=draft.id;it.ts=draft.ts}it.cat=$("#ct").value.trim().slice(0,30);if(!old&&!it.cat&&!it.url&&(mode==="note"||mode==="word"))it.cat=mode==="word"?"Words":"Notes";S.last=it.cat;if(EMJ)it.em=EMJ;else delete it.em;it.f=FL.filter(x=>x!==nI&&x[1].trim());if(old)Object.assign(old,it);else if(!nw){}
  $("#dlg").close();nw?put(it,true):(save(),draw());toast("Saved")};
 $("#dl").onclick=()=>{$("#dlg").close();rm(edit)};
 function pasteIn(t){const m=t.match(/https?:\/\/[^\s]+/);let rest=t.trim();if(m){$("#lk").value=m[0].replace(/[.,;:!?)\]]+$/,"");rest=t.replace(m[0],"").trim()}if(rest){let n=FL.find(x=>x[0]==="Note"||x[0]==="Meaning");if(!n){n=[mode==="word"?"Meaning":"Note",""];FL.unshift(n)}n[1]=n[1]?n[1]+"\n"+rest:rest;flDraw()}hint()}
@@ -904,7 +908,7 @@ async function clip(){if(S.clip==="off"||document.hidden||!document.hasFocus()||
  let t="";try{t=((await navigator.clipboard.readText())||"").trim()}catch{return}
  const u=(t.match(/https?:\/\/[^\s]+/)||[""])[0].replace(/[.,;:!?)\]]+$/,"");if(!u||localStorage.ls_clip===t)return;localStorage.ls_clip=t;
  const cu=clean(u);if(D.some(x=>x.url===cu))return;
- if(S.clip==="auto"){const it=mk(t,"","auto");if(!it)return;it.cat=S.last||"";put(it,true);cbShow("Saved from "+src(cu),"Undo",()=>{D=D.filter(x=>x.id!==it.id);save();draw()})}
+ if(S.clip==="auto"){const it=mk(t,"","auto");if(!it)return;it.cat="";put(it,true);cbShow("Saved from "+src(cu),"Undo",()=>{D=D.filter(x=>x.id!==it.id);save();draw()})}
  else cbShow("Copied: "+src(cu),"Save",()=>ask(t,""))}
 addEventListener("focus",()=>setTimeout(clip,250));document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout(clip,250)});setTimeout(clip,900);
 /* v8: header styles, section markers, preset looks, redesigned settings */
@@ -1518,5 +1522,8 @@ html[data-tb="1"] #pgf{background:#050505!important}
 /* card style: Dark (dark cards in light or dark mode) */
 body[data-cs=dark] .r,body[data-cs=dark] .r.o{--sf:#0c0d11;--tx:#eef0f5;--mu:#9aa0ad;--bd:rgba(255,255,255,.13);--fl:rgba(255,255,255,.07);background:#0c0d11;color:#eef0f5;border:1px solid rgba(255,255,255,.13);-webkit-backdrop-filter:none;backdrop-filter:none}
 body[data-cs=dark] .r.sl{background:color-mix(in srgb,var(--ac) 14%,#0c0d11)}
+/* X posts: videos play inside the card */
+.xvw video{width:100%;max-height:440px;display:block;background:#000;object-fit:contain}
+.xvw.bad::after{content:"Can\2019t play here. Tap Open to watch on X.";display:block;padding:12px;color:var(--mu);font-size:.85em;text-align:center}
 </style>
 </body></html>
