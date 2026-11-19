@@ -109,12 +109,12 @@ body.selm .fab{display:none}
 /* grid view */
 body[data-vw=grid] .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:14px 8px;align-items:start}
 body[data-vw=grid] .cg,body[data-vw=grid] .em{grid-column:1/-1}
-body[data-vw=grid] .r{border:0}
-body[data-vw=grid] .h{position:relative;flex-direction:column;gap:6px;padding:4px;text-align:center}
-body[data-vw=grid] .r .ic{width:min(100%,64px);height:auto;aspect-ratio:1;font-size:26px}
-body[data-vw=grid] .bd,body[data-vw=grid] .cv,body[data-vw=grid] .m small{display:none}
-body[data-vw=grid] .m b{font-size:.8em;text-align:center}
-body[data-vw=grid] .ck{position:absolute;top:2px;left:calc(50% - 38px);background:var(--sf)}
+body[data-vw=grid] :where(.list) .r{border:0}
+body[data-vw=grid] :where(.list) .h{position:relative;flex-direction:column;gap:6px;padding:4px;text-align:center}
+body[data-vw=grid] :where(.list) .r .ic{width:min(100%,64px);height:auto;aspect-ratio:1;font-size:26px}
+body[data-vw=grid] :where(.list) .bd,body[data-vw=grid] :where(.list) .cv,body[data-vw=grid] :where(.list) .m small{display:none}
+body[data-vw=grid] :where(.list) .m b{font-size:.8em;text-align:center}
+body[data-vw=grid] :where(.list) .ck{position:absolute;top:2px;left:calc(50% - 38px);background:var(--sf)}
 /* buttons, chips, segments */
 .btn{flex:1;min-height:42px;padding:0 14px;border:1px solid var(--tx);font:700 .74em var(--mono);text-transform:uppercase;letter-spacing:.08em}
 .btn.p{background:var(--ac);border-color:var(--ac);color:var(--on)}.btn.d{color:var(--rd);border-color:var(--rd)}
@@ -241,8 +241,8 @@ header h1{font:800 calc(17px*var(--ts,1))/1 var(--ff,system-ui);letter-spacing:.
 .qa button{font:600 .8em var(--ff,system-ui);text-transform:none;letter-spacing:0;color:var(--mu)}
 .qa button+button{border-left:1px solid var(--bd)}
 .qa .pr{background:var(--ac);color:var(--on)}
-body[data-vw=grid] .r{background:none;border:0;box-shadow:none;border-radius:16px;overflow:visible}
-body[data-vw=grid] .h{padding:4px}
+body[data-vw=grid] :where(.list) .r{background:none;border:0;box-shadow:none;border-radius:16px;overflow:visible}
+body[data-vw=grid] :where(.list) .h{padding:4px}
 .em h3{font-family:var(--ff,system-ui)}
 /* add button */
 .fab{width:52px;height:52px;border-radius:14px;background:color-mix(in srgb,var(--ac) 22%,#fff);color:#04202a;border:1px solid var(--ac);box-shadow:0 0 24px -4px var(--ac)}
@@ -302,11 +302,9 @@ body[data-sm=dot] .lb{color:var(--mu)}
 .r .ic{width:calc(var(--isz,54px)*.74);height:calc(var(--isz,54px)*.74);font-size:calc(var(--isz,54px)*.34)}
 body[data-shape=circle] .ic{border-radius:50%}
 body[data-shape=square] .ic{border-radius:3px}
-body[data-cs=flat] .r{background:var(--fl);border-color:transparent}
-body[data-cs=line] .r{background:transparent}
 body[data-edge=none] .r,body[data-edge=none] .r.o{box-shadow:none}
 body[data-edge=glow] .r,body[data-edge=glow] .r.o{box-shadow:0 0 22px -10px var(--cc,var(--ac))}
-body[data-vw=grid] .r,body[data-vw=grid] .r.o{box-shadow:none!important;background:none!important;border:0!important}
+body[data-vw=grid] :where(.list) .r,body[data-vw=grid] :where(.list) .r.o{box-shadow:none!important;background:none!important;border:0!important}
 body[data-bg=plain]::before{display:none}
 /* settings sheet */
 #sdlg{max-height:46dvh;padding:0 12px calc(8px + env(safe-area-inset-bottom))}
@@ -391,7 +389,6 @@ body[data-hg=off] .top{box-shadow:none}
 #ycode{font:600 21px ui-monospace,Menlo,monospace;letter-spacing:.05em;text-align:center;padding:16px 8px;margin-top:12px;background:var(--fl);border:1px solid var(--bd);border-radius:12px;user-select:all}
 #ydlg .hint,#dbdlg .hint{margin-top:6px}
 /* Edge accents */
-body[data-edge] .r,body[data-edge] .r.o{box-shadow:none}
 body[data-edge]:not([data-edge=off]):not([data-edge=under]):not([data-edge=neon]) .r::before{content:"";position:absolute;pointer-events:none;z-index:1}
 body[data-edge=pill] .r::before{left:0;top:0;bottom:0;width:62%;border-radius:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cc,var(--ac)) 46%,transparent) 0,color-mix(in srgb,var(--cc,var(--ac)) 22%,transparent) 28%,color-mix(in srgb,var(--cc,var(--ac)) 7%,transparent) 62%,transparent 100%);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%)}
 body[data-edge=ring] .r::before{inset:0;border-radius:inherit;padding:1.5px;background:linear-gradient(135deg,var(--cc,var(--ac)),var(--ac2,var(--cc,var(--ac))));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
@@ -446,16 +443,12 @@ body[data-sm=fog] .sc{background:radial-gradient(ellipse farthest-side at 0 50%,
 @keyframes lkspin{to{--lka:360deg}}
 @keyframes lkpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--cc,var(--ac)) 75%,transparent)}100%{box-shadow:0 0 0 13px transparent}}
 body[data-edge=hair] .r::before{left:0;top:10%;bottom:10%;width:1.5px;background:linear-gradient(180deg,transparent,var(--cc,var(--ac)),transparent)}
-body[data-edge=under] .r,body[data-edge=under] .r.o{box-shadow:0 16px 18px -14px color-mix(in srgb,var(--cc,var(--ac)) 75%,transparent)}
+body[data-edge=under] .r,body[data-edge=under] .r.o{--es:0 16px 18px -14px color-mix(in srgb,var(--cc,var(--ac)) 75%,transparent)}
 body[data-edge=cornl] .r::before{left:0;top:0;width:190px;height:150px;background:radial-gradient(circle at 0 0,color-mix(in srgb,var(--cc,var(--ac)) 52%,transparent),transparent 68%)}
-body[data-edge=neon] .r,body[data-edge=neon] .r.o{box-shadow:0 0 0 1px color-mix(in srgb,var(--cc,var(--ac)) 85%,transparent),0 0 16px -2px color-mix(in srgb,var(--cc,var(--ac)) 55%,transparent),inset 0 0 14px -8px color-mix(in srgb,var(--cc,var(--ac)) 80%,transparent)}
+body[data-edge=neon] .r,body[data-edge=neon] .r.o{--es:0 0 0 1px color-mix(in srgb,var(--cc,var(--ac)) 85%,transparent),0 0 16px -2px color-mix(in srgb,var(--cc,var(--ac)) 55%,transparent),inset 0 0 14px -8px color-mix(in srgb,var(--cc,var(--ac)) 80%,transparent)}
 body[data-edge=beacon] .r::before{right:14px;top:14px;width:9px;height:9px;border-radius:50%;background:var(--cc,var(--ac));animation:lkpulse 2.2s ease-out infinite}
 body[data-edge=comet] .r::before{inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--lka),transparent 0 62%,color-mix(in srgb,var(--cc,var(--ac)) 30%,transparent) 78%,var(--cc,var(--ac)) 94%,#fff 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:lkspin 4s linear infinite}
 @media(prefers-reduced-motion:reduce){body[data-edge=beacon] .r::before,body[data-edge=comet] .r::before{animation:none}}
-/* Sketch card style: hand-drawn overlapping outline */
-body[data-cs=sketch] .r{background:color-mix(in srgb,var(--sf) 55%,transparent);border-color:transparent}
-body[data-cs=sketch] .r::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:color-mix(in srgb,var(--cc,var(--ac)) 62%,var(--tx));-webkit-mask-box-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M44 5C80 3 130 6 160 4C184 3 197 14 196 44C198 80 195 130 197 160C198 184 186 197 156 196C120 198 80 194 44 197C14 198 3 186 4 156C2 120 6 80 3 44C3 16 18 5 44 5Z' fill='none' stroke='%23000' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 12C90 14 125 10 158 13C178 14 188 24 190 48C187 85 191 125 189 158C188 178 178 190 152 190C118 187 85 192 50 189C26 188 12 178 13 152C15 118 10 85 12 50C13 28 26 12 50 12Z' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 44 / 22px stretch}
-@supports not (-webkit-mask-box-image:url(x)){body[data-cs=sketch] .r{border:1.5px dashed color-mix(in srgb,var(--cc,var(--ac)) 62%,var(--tx))}}
 .m small .tg+.dt::before,.m small .tg+.dn::before{font-size:1.9em;margin-right:9px;vertical-align:-.16em}
 /* compact italic hashtag meta: #notes  today */
 .m small{gap:8px;line-height:1.25}
@@ -510,12 +503,8 @@ body .m small .dt::before{flex:none}
 .mg button i svg{width:18px;height:18px}
 .mnp.g .mg button:active{background:var(--fl)}
 .mnp.g .mg .x{color:var(--rd)}.mg .x i{background:color-mix(in srgb,var(--rd) 15%,transparent);color:var(--rd)}
-/* card styles: clearly different from each other */
-body[data-cs=tint] .r{background:color-mix(in srgb,var(--cc,var(--ac)) 13%,var(--sf));border-color:color-mix(in srgb,var(--cc,var(--ac)) 28%,transparent)}
-body[data-cs=flat] .r{background:color-mix(in srgb,var(--tx) 8%,var(--bg));border-color:transparent}
-body[data-cs=line] .r{background:transparent;border:1.5px solid color-mix(in srgb,var(--cc,var(--ac)) 55%,var(--bd))}
 body[data-edge=glow] .r,body[data-edge=glow] .r.o{box-shadow:0 0 26px -6px color-mix(in srgb,var(--cc,var(--ac)) 65%,transparent)}
-body[data-vw=grid] .r,body[data-vw=grid] .r.o{box-shadow:none!important;background:none!important;border:0!important}
+body[data-vw=grid] :where(.list) .r,body[data-vw=grid] :where(.list) .r.o{box-shadow:none!important;background:none!important;border:0!important}
 /* export popover */
 .mnp.x{width:min(300px,calc(100vw - 20px))}
 .xh{display:flex;align-items:center;justify-content:space-between;margin:0 2px 10px}
@@ -669,7 +658,7 @@ const ttl=i=>{if(!(i.type==="link"&&i.url&&(i.auto||i.title.startsWith(host(i.ur
 const CV='<svg class="cv" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg>';
 const agoX=t=>{const d=(Date.now()-t)/864e5;return d<1?hrs(t):d<2?"yesterday":d<30?Math.floor(d)+" days ago":new Date(t).toLocaleDateString(undefined,{day:"numeric",month:"short"})};
 function row(i,n){const o=isO(i.id)&&!selM,pill=i.cat&&f==="all"&&!(S.group==="cat"&&!q&&tf!=="done")&&false?"":"",sub=[(i.cat||"").replace(/ · /g," "),agoX(i.ts),i.done?"Done":""].filter(Boolean).join(" · ");
- return`<article class="r${i.done?" d":""}${o?" o":""}${i.cat?" hc":""}${selM&&sel.has(i.id)?" sl":""}" style="--i:${n||0};--ic:hsl(${hue(i.url?host(i.url):i.type)} 70% 56%);--tc:${i.cat?ccol(i.cat):`hsl(${hue(i.url?host(i.url):i.type)} 70% 56%)`};--cc:${i.cat?ccol(i.cat):"var(--ac)"}" data-id="${i.id}"${i.url?' data-u="1"':""}><div class="h" data-a="tog">${selM?`<span class="ck${sel.has(i.id)?" on":""}"></span>`:""}${tile(i)}<div class="m"><b>${i.pin?"★ ":""}${esc(ttl(i))}</b><small>${pill}${sub.split(" · ").filter(Boolean).map(t=>`<span class="${t===agoX(i.ts)?"dt a"+(d=>d<1?0:d<2?1:d<7?2:3)((Date.now()-i.ts)/864e5):t==="Done"?"dn":"tg"}">${esc(t)}</span>`).join("")}</small></div>${CV}</div>${o?body(i):""}</article>`}
+ return`<article class="r${i.done?" d":""}${o?" o":""}${i.cat?" hc":""}${selM&&sel.has(i.id)?" sl":""}" style="--i:${n||0};--ic:hsl(${hue(i.url?host(i.url):i.type)} 70% 56%);--tc:${i.cat?ccol(i.cat):`hsl(${hue(i.url?host(i.url):i.type)} 70% 56%)`};--cc:${i.cat?ccol(i.cat):"var(--ac)"}" data-id="${i.id}" data-bar="${esc(i.url?src(i.url):(TL[i.type]||""))}"${i.url?' data-u="1"':""}><div class="h" data-a="tog">${selM?`<span class="ck${sel.has(i.id)?" on":""}"></span>`:""}${tile(i)}<div class="m"><b>${i.pin?"★ ":""}${esc(ttl(i))}</b><small>${pill}${sub.split(" · ").filter(Boolean).map(t=>`<span class="${t===agoX(i.ts)?"dt a"+(d=>d<1?0:d<2?1:d<7?2:3)((Date.now()-i.ts)/864e5):t==="Done"?"dn":"tg"}">${esc(t)}</span>`).join("")}</small></div>${CV}</div>${o?body(i):""}</article>`}
 const TYP=[["all","All"],["link","Articles"],["yt","Videos"],["x","X posts"],["ig","Instagram"],["note","Notes"],["word","Words"],["done","Done"]];
 const tm=(i,k)=>k==="all"||(k==="done"?i.done:i.type===k);
 function list(){const s=q.toLowerCase(),ci=S.sort==="manual"?(a,b)=>(a.o??-a.ts)-(b.o??-b.ts):S.sort==="az"?(a,b)=>a.title.localeCompare(b.title):S.sort==="old"?(a,b)=>a.ts-b.ts:(a,b)=>b.ts-a.ts;
@@ -879,7 +868,7 @@ function megaShuffle(){vib();
  const A=[
  ["Neon Noir",()=>{const h=I(0,360);return{m:"dark",blk:1,a:h2x(h,95,62),b:h2x(H(h+150+I(-20,20)),95,62),cs:P(["line","tint"]),edge:P(["neon","comet"]),sm:P(["dot","both","line","rail","frame"]),ff:F(["grot","jb","sora","sys"]),rad:I(6,16),ish:P(["rounded","square"]),wp:"none",fx:P(["constellation","stars","none"])}}],
  ["Aurora Glass",()=>{const h=I(0,360);return{m:"dark",bg:h2x(h,45,6),a:h2x(h,85,66),b:h2x(H(h+60),85,68),cs:"gradient",edge:P(["comet","cornl"]),sm:P(["fog","dot","swoosh","rail"]),ff:F(["outfit","sora","dm","inter"]),rad:I(16,26),ish:P(["rounded","circle"]),wp:W(["aurora","nebula","mesh"]),fx:P(["fireflies","sparkle","stars"])}}],
- ["Paper Editorial",()=>{const h=P([30,40,25,200]);return{m:"light",bg:h2x(h,45,95),a:h2x(h,60,36),b:h2x(H(h+20),60,45),cs:"line",edge:P(["hair","off"]),sm:P(["quote","rule","line","paren","curve"]),ff:F(["lora","play","frau","lit","ssf"]),rad:I(2,10),ish:"square",wp:"none",fx:"none",pat:P(["plain","lines"])}}],
+ ["Paper Editorial",()=>{const h=P([30,40,25,200]);return{m:"light",bg:h2x(h,45,95),a:h2x(h,60,36),b:h2x(H(h+20),60,45),cs:P(["line","bookmark"]),edge:P(["hair","off"]),sm:P(["quote","rule","line","paren","curve"]),ff:F(["lora","play","frau","lit","ssf"]),rad:I(2,10),ish:"square",wp:"none",fx:"none",pat:P(["plain","lines"])}}],
  ["Candy Pop",()=>{const h=I(0,360);return{m:"light",bg:h2x(h,70,95),a:h2x(h,85,56),b:h2x(H(h+I(40,100)),85,60),cs:P(["tint","bubble"]),edge:"under",sm:P(["marker","dot","boxed","tab","ear"]),ff:F(["pop","nunito","round","fig"]),rad:I(20,30),ish:"circle",isz:I(52,60),wp:W(["blossom","none"]),fx:P(["bubbles","sparkle","none"])}}],
  ["Terminal",()=>{const h=P([135,38,190,0]);return{m:"dark",blk:1,mix:"solid",a:h2x(h,90,58),b:h2x(h,90,70),cs:P(["line","window"]),edge:P(["off","hair","beacon"]),sm:P(["rule","frame"]),ff:F(["jb","spm","mono"]),rad:I(2,4),ish:"square",isz:I(38,46),wp:"none",fx:P(["rain","none","constellation"])}}],
  ["Sunset Dusk",()=>{const h=P([15,330,280,350]);return{m:"dark",bg:h2x(h,50,7),a:h2x(h,90,64),b:h2x(H(h+50),95,66),cs:P(["tint","gradient"]),edge:P(["under","cornl","comet"]),sm:P(["fog","both","rail","thread"]),ff:F(["frau","play","dm"]),rad:I(14,24),ish:"rounded",wp:W(["sunset","dusk"]),fx:P(["sparkle","stars","none"])}}],
@@ -1002,9 +991,11 @@ addEventListener("focus",()=>setTimeout(clip,250));document.addEventListener("vi
   {n:"Window",m:"dark",p:"Cyan",bd:"#0b0f14",cs:"window",r:10,f:"mono",e:"off",ish:"square",sm:"frame",isz:40}];
 const OO=[["on","On"],["off","Off"]],SP={
   theme:[["tiles"],["tmode","Theme","seg",[["auto","Auto"],["light","Light"],["dark","Dark"],["black","True dark"]]],["ff","Typeface","hseg",[["sys","Sans"],["round","Rounded"],["inter","Inter"],["pop","Poppins"],["outfit","Outfit"],["sora","Sora"],["dm","DM Sans"],["grot","Grotesk"],["manrope","Manrope"],["nunito","Nunito"],["fig","Figtree"],["lex","Lexend"],["brico","Bricolage"],["atk","Atkinson"],["ed","Editorial"],["lora","Lora"],["play","Playfair"],["frau","Fraunces"],["lit","Literata"],["ssf","Source Serif"],["mer","Merriweather"],["mono","Mono"],["jb","JetBrains"],["spm","Space Mono"],["caveat","Handwritten"],["patrick","Patrick Hand"]]],["pal2"],["tsz","Text size","range",85,125],["bg","Backdrop","sel",[["glow","Glow"],["plain","Plain"],["dotgrid","Dots"],["paperdot","Paper dots"],["finedot","Fine dots"],["stipple","Stipple"],["graph","Graph paper"],["ruled","Ruled"],["hatch","Crosshatch"],["linen","Linen"],["kraft","Kraft"],["grid","Grid"],["mesh","Mesh"],["aurora","Aurora"],["stripes","Stripes"],["noise","Grain"],["spot","Spotlight"],["sunrise","Sunrise"]]]],
-  cards:[["cs","Style","sel",[["tint","Tint"],["line","Outline"],["sketch","Sketch"],["bubble","Message"],["neon","Neon sign"],["neumorph","Soft emboss"],["gradient","Aurora edge"],["window","Window"]]],["edge","Edge","sel",[["off","Off"],["hair","Hairline"],["under","Underglow"],["ring","Prism ring"],["cornl","Corner light"],["neon","Neon"],["beacon","Beacon"],["comet","Comet"]]],["sm","Note sections","sel",[["plain","Plain"],["line","Line"],["dot","Dot"],["both","Line + dot"],["rule","Rule"],["marker","Marker"],["boxed","Boxed"],["frame","Viewfinder"],["curve","Curve bracket"],["swoosh","Swoosh"],["paren","Parentheses"],["tab","Folder tab"],["ear","Dog-ear"],["rail","Glow rail"],["thread","Thread"],["quote","Quote"],["fog","Fog glow"]]],["ish","Icon shape","seg",[["rounded","Round"],["circle","Circle"],["square","Square"]]],["rad","Corners","range",2,30],["isz","Icon size","range",36,64],["tl","Title lines","seg",[[1,"1"],[2,"2"],[3,"3"]]],["cm","Category tag","seg",[["pill","On"],["none","Off"]]],["ssub","Source line","seg",[["show","On"],["hide","Off"]]],["cnt","Counts","seg",[["show","On"],["hide","Off"]]]],
+  cards:[["cs","Style","cstiles"],["edge","Edge","sel",[["off","Off"],["hair","Hairline"],["under","Underglow"],["ring","Prism ring"],["cornl","Corner light"],["neon","Neon"],["beacon","Beacon"],["comet","Comet"]]],["sm","Note sections","sel",[["plain","Plain"],["line","Line"],["dot","Dot"],["both","Line + dot"],["rule","Rule"],["marker","Marker"],["boxed","Boxed"],["frame","Viewfinder"],["curve","Curve bracket"],["swoosh","Swoosh"],["paren","Parentheses"],["tab","Folder tab"],["ear","Dog-ear"],["rail","Glow rail"],["thread","Thread"],["quote","Quote"],["fog","Fog glow"]]],["ish","Icon shape","seg",[["rounded","Round"],["circle","Circle"],["square","Square"]]],["rad","Corners","range",2,30],["isz","Icon size","range",36,64],["tl","Title lines","seg",[[1,"1"],[2,"2"],[3,"3"]]],["cm","Category tag","seg",[["pill","On"],["none","Off"]]],["ssub","Source line","seg",[["show","On"],["hide","Off"]]],["cnt","Counts","seg",[["show","On"],["hide","Off"]]]],
   layout:[["vw","Items","seg",[["list","List"],["grid","Grid"]]],["group","Sections","seg",[["cat","Grouped"],["flat","One list"]]],["exp","Cards","seg",[[0,"Closed"],[1,"Open"]]],["sort","Sort","sel",[["new","Newest"],["old","Oldest"],["az","A–Z"],["manual","Manual"]]],["dens","Density","seg",[["tight","Compact"],["normal","Cozy"],["airy","Roomy"]]],["width","Width","seg",[["narrow","Narrow"],["normal","Normal"],["wide","Wide"]]],["hs","Header","seg",[["brand","Title"],["compact","Minimal"],["search","Search"]]],["ah","Auto-hide","seg",OO],["hg","Header glow","seg",OO],["clip","Clipboard","seg",[["auto","Save"],["ask","Ask"],["off","Off"]]]]};
- const fld=a=>{const[k,l,ty,o,mx]=a;
+ const CSV=[["tint","Tint"],["line","Outline"],["sketch","Sketch"],["bubble","Message"],["neon","Neon"],["neumorph","Emboss"],["gradient","Aurora"],["window","Window"],["bookmark","Bookmark"]];
+ const csTiles=()=>{const c=cats()[0],col=c?ccol(c[0]):"var(--ac)";return`<div class="f w2"><label>Style</label><div class="cst" role="radiogroup" aria-label="Card style">${CSV.map(([v,l])=>`<button type="button" role="radio" aria-checked="false" data-csv="${v}"><div class="csp" data-cs="${v}" aria-hidden="true"><article class="r rp" style="--cc:${col}" data-bar=""><div class="h"><span class="ic" style="background:var(--cc);color:#fff">A</span><div class="m"><b>Article</b><small><span class="tg">reading</span></small></div></div></article></div><span>${l}</span></button>`).join("")}</div></div>`};
+ const fld=a=>{const[k,l,ty,o,mx]=a;if(ty==="cstiles")return csTiles();
   if(k==="tiles")return`<div class="f w2"><div class="tiles"><button type="button" class="lk" data-rnd="1" style="--p:var(--sf);--a:var(--ac);--t:var(--tx)"><i></i><span>Shuffle</span></button>${LOOKS.map((L,i)=>{const d=L.m==="dark";return`<button type="button" class="lk" data-look="${i}" style="--p:${d?(L.bd||"#13141f"):(L.bl||"#f4f1ea")};--a:${(PAL[L.p]||PAL.Cyan)[d?2:0]};--t:${d?"#e8eef7":"#0b1320"}"><i></i><span>${L.n}</span></button>`}).join("")}</div></div>`;
   if(k==="pal2")return`<div class="f w2"><div class="pal">${Object.keys(PAL).map(n=>`<button type="button" data-p="${n}" style="--a:${PAL[n][0]}" aria-label="${n}"></button>`).join("")}<label class="cu" data-p="Custom" aria-label="Custom colour"><input type="color" data-k="ca"></label></div></div>`;
   if(ty==="seg")return`<div class="f${o.length>3?" w2":""}"><label>${l}</label><div class="seg" data-k="${k}">${o.map(([v,x])=>`<button type="button" data-v="${v}">${x}</button>`).join("")}</div></div>`;
@@ -1012,10 +1003,12 @@ const OO=[["on","On"],["off","Off"]],SP={
   if(ty==="sel")return`<div class="f"><label>${l}</label><select data-k="${k}">${o.map(([v,x])=>`<option value="${v}">${x}</option>`).join("")}</select></div>`;
   return`<div class="f"><label>${l}<output></output></label><input type="range" data-k="${k}" min="${o}" max="${mx}"></div>`};
  sBuild=function(){for(const t in SP)document.querySelector(`.ap[data-t=${t}]`).innerHTML=`<div class="grp">${SP[t].map(fld).join("")}</div>`;built=true};
- const mk0=mark;mark=function(){mk0();document.querySelectorAll("#sdlg .seg.hs button.on").forEach(b=>{const r=b.parentNode;r.scrollLeft=b.offsetLeft-(r.clientWidth-b.offsetWidth)/2});document.querySelectorAll("#sdlg [data-look]").forEach(b=>b.classList.toggle("on",LOOKS[+b.dataset.look].n===S.look))};
+ const mk0=mark;mark=function(){mk0();document.querySelectorAll("#sdlg .cst>button").forEach(b=>{const on=b.dataset.csv===S.cs;b.classList.toggle("on",on);b.setAttribute("aria-checked",on);if(on){const r=b.parentNode,l=b.offsetLeft,w=b.offsetWidth;if(l<r.scrollLeft+4)r.scrollLeft=l-4;else if(l+w>r.scrollLeft+r.clientWidth-4)r.scrollLeft=l+w-r.clientWidth+4}});document.querySelectorAll("#sdlg .seg.hs button.on").forEach(b=>{const r=b.parentNode;r.scrollLeft=b.offsetLeft-(r.clientWidth-b.offsetWidth)/2});document.querySelectorAll("#sdlg [data-look]").forEach(b=>b.classList.toggle("on",LOOKS[+b.dataset.look].n===S.look))};
  {const th0=theme;theme=function(){th0();document.documentElement.dataset.skin=S.sk||""};theme()}
  const up0=upd;upd=function(k){S.look="";up0(k)};
  $("#sdlg").addEventListener("click",e=>{const t=e.target.closest("[data-look]");if(!t)return;const L=LOOKS[+t.dataset.look];Object.assign(S,{theme:L.m,pal:L.p,mix:"solid",dark:L.blk?"black":"soft",bgc:L.bl||"",dbgc:L.blk?"":(L.bd||""),cs:L.cs,rad:L.r,ff:L.f,edge:(window.EMAP[L.e]||L.e),ish:L.ish||"rounded",sm:L.sm||"dot",isz:L.isz||54,wp:L.wp||"none",fxk:L.fx||"none",bg:L.bg||"plain",sk:"",look:L.n,wild:0,dens:L.dens||"normal"});document.documentElement.classList.add("tt");setTimeout(()=>document.documentElement.classList.remove("tt"),420);theme();save();draw();mark();try{thDraw();wallDraw();hUpd()}catch{}});
+ $("#gb").addEventListener("click",()=>setTimeout(mark,80));$("#sdlg").addEventListener("click",e=>{if(e.target.closest("#stb"))setTimeout(mark,80)});
+ $("#sdlg").addEventListener("click",e=>{const t=e.target.closest("[data-csv]");if(!t)return;S.cs=t.dataset.csv;upd("cs")});
  $("#sdlg").addEventListener("click",e=>{if(!e.target.closest("[data-rnd]"))return;
   window.megaShuffle&&window.megaShuffle()});
  /* tabs + resizable sheet */
@@ -1442,8 +1435,6 @@ body[data-wild="1"][data-lk=Vapor] .r *{color:#ffe9fb}
 #sdlg .ap[data-t=data] #cd{order:6}
 #sdlg .ap[data-t=data] #rs{order:7}
 #sdlg .ap[data-t=data] #stat{order:8;grid-column:1/-1;margin:4px 0 0!important;text-align:center}
-/* more Style options */
-body[data-cs=glass] .r{background:color-mix(in srgb,var(--sf) 55%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid color-mix(in srgb,var(--tx) 16%,transparent)}
 /* more Edge options */
 /* more Backdrop options */
 body[data-bg=dotgrid]::before{background:radial-gradient(color-mix(in srgb,var(--tx) 24%,transparent) 1.2px,transparent 1.5px) 0 0/18px 18px}
@@ -1512,7 +1503,7 @@ body[data-bg=kraft]::before{background:radial-gradient(rgba(70,40,10,.32) .8px,t
 /* True dark: pure black page, near-black surfaces, no tinted glow */
 html[data-tb="1"]{--bg:#000!important;--sf:#050505!important;--fl:rgba(255,255,255,.06)!important;--bd:rgba(255,255,255,.14)!important}
 html[data-tb="1"] body::before,html[data-tb="1"] #wp,html[data-tb="1"] #fx{display:none!important}
-html[data-tb="1"] body .r,html[data-tb="1"] body .r.o,html[data-tb="1"] body[data-cs] .r{background:#050505!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+html[data-tb="1"] body .r,html[data-tb="1"] body .r.o{-webkit-backdrop-filter:none;backdrop-filter:none}
 html[data-tb="1"] dialog,html[data-tb="1"] .mnp{background:#050505!important}
 /* X post stats: one compact line (icon + number), no wrapping */
 .xps{flex-wrap:nowrap;gap:14px;overflow:hidden}
@@ -1562,9 +1553,6 @@ html[data-tb="1"] #pgf{background:#050505!important}
 #sdlg .seg.hs{position:relative;overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}
 #sdlg .seg.hs::-webkit-scrollbar{display:none}
 #sdlg .seg.hs button{flex:none;min-width:auto;padding:0 14px;font-size:.95em;height:34px}
-/* card style: Dark (dark cards in light or dark mode) */
-body[data-cs=dark] .r,body[data-cs=dark] .r.o{--sf:#0c0d11;--tx:#eef0f5;--mu:#9aa0ad;--bd:rgba(255,255,255,.13);--fl:rgba(255,255,255,.07);background:#0c0d11;color:#eef0f5;border:1px solid rgba(255,255,255,.13);-webkit-backdrop-filter:none;backdrop-filter:none}
-body[data-cs=dark] .r.sl{background:color-mix(in srgb,var(--ac) 14%,#0c0d11)}
 /* X posts: videos play inside the card */
 .xvw video{width:100%;max-height:440px;display:block;background:#000;object-fit:contain}
 .xvw.bad::after{content:"Can\2019t play here (" attr(data-err) "). Use Open video below.";display:block;padding:12px;color:var(--mu);font-size:.85em;text-align:center}
@@ -1605,22 +1593,6 @@ body[data-cs=dark] .r.sl{background:color-mix(in srgb,var(--ac) 14%,#0c0d11)}
 body[data-cm=none] .m small .tg,body[data-cm=none] .cp{display:none!important}
 body[data-cm=none] .m small .tg+.dt::before,body[data-cm=none] .m small .tg+.dn::before{content:none!important;display:none!important}
 
-/* ===== Studio card styles: doodle, comic, washi tape, chalk, ticket, paper stack ===== */
-body[data-cs=doodle] .r{background:transparent;border:0;border-bottom:2px dashed color-mix(in srgb,var(--cc,var(--ac)) 55%,var(--bd));border-radius:0;box-shadow:none}
-body[data-cs=doodle] .m b{text-decoration:underline wavy color-mix(in srgb,var(--cc,var(--ac)) 75%,transparent);text-decoration-thickness:1.5px;text-underline-offset:5px;text-decoration-skip-ink:none}
-body[data-cs=comic] .r{background:var(--sf);border:2.5px solid var(--tx);box-shadow:4px 4px 0 var(--cc,var(--ac));margin-right:5px}
-body[data-cs=comic] .r:nth-child(odd){rotate:-.35deg}
-body[data-cs=comic] .r:nth-child(even){rotate:.35deg}
-body[data-cs=comic] .m b{font-weight:800}
-body[data-cs=tape] .r{overflow:visible;content-visibility:visible;background:color-mix(in srgb,var(--sf) 90%,#fff);border:0;border-radius:3px;margin-top:10px;box-shadow:0 1px 1px rgba(0,0,0,.2),0 10px 16px -10px rgba(0,0,0,.55)}
-body[data-cs=tape] .r:nth-child(odd){rotate:-.5deg}
-body[data-cs=tape] .r:nth-child(even){rotate:.5deg}
-body[data-cs=tape] .r::after{content:"";position:absolute;top:-9px;left:calc(50% - 34px);width:68px;height:18px;rotate:-3deg;pointer-events:none;z-index:3;background:color-mix(in srgb,var(--cc,var(--ac)) 58%,transparent);clip-path:polygon(0 0,100% 0,96% 25%,100% 50%,96% 75%,100% 100%,0 100%,4% 75%,0 50%,4% 25%)}
-body[data-cs=chalk] .r{background:transparent;border-color:transparent}
-body[data-cs=chalk] .m b{text-shadow:0 0 1px currentColor}
-body[data-cs=chalk] .r::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:color-mix(in srgb,var(--tx) 82%,transparent);-webkit-mask-box-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M44 5C80 3 130 6 160 4C184 3 197 14 196 44C198 80 195 130 197 160C198 184 186 197 156 196C120 198 80 194 44 197C14 198 3 186 4 156C2 120 6 80 3 44C3 16 18 5 44 5Z' fill='none' stroke='%23000' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 12C90 14 125 10 158 13C178 14 188 24 190 48C187 85 191 125 189 158C188 178 178 190 152 190C118 187 85 192 50 189C26 188 12 178 13 152C15 118 10 85 12 50C13 28 26 12 50 12Z' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 44 / 22px stretch}
-body[data-cs=ticket] .r{background:var(--sf);border:1.5px dashed color-mix(in srgb,var(--cc,var(--ac)) 60%,var(--bd));border-radius:6px;-webkit-mask:radial-gradient(circle 9px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 9px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat}
-body[data-cs=stack] .r{background:var(--sf);border:1px solid var(--bd);border-radius:3px;margin-right:8px;margin-bottom:10px;box-shadow:3px 4px 0 -1px var(--sf),3px 4px 0 0 var(--bd),6px 8px 0 -1px var(--sf),6px 8px 0 0 var(--bd)}
 
 /* smooth category pills + horizontal scroll */
 .tabs{scroll-snap-type:x proximity;scroll-padding-inline:24px;-webkit-overflow-scrolling:touch}
@@ -1684,17 +1656,71 @@ body{overflow-x:clip}
 .m{min-width:0}.m b{overflow-wrap:anywhere}
 .xop{display:inline-block;margin-top:8px;padding:7px 12px;border:1px solid var(--bd);border-radius:10px;font:600 .8em var(--ff,system-ui);color:var(--ac);text-decoration:none}
 
-/* ===== Card styles: Message (chat bubble), Neon sign, Soft emboss, Aurora edge, Window ===== */
-body[data-cs=bubble] .r{--bb:color-mix(in srgb,var(--cc,var(--ac)) 34%,var(--bg));overflow:visible;content-visibility:visible;background:var(--bb);border:0;border-radius:14px 0 14px 14px;box-shadow:0 1px 1px rgba(0,0,0,.35);margin-right:10px}
-body[data-cs=bubble]:not([data-vw=grid]) .r:not(.o){width:fit-content;min-width:62%;max-width:94%;margin-left:auto}
-body[data-cs=bubble] .r::after{content:"";position:absolute;top:0;right:-10px;width:0;height:0;border-top:12px solid var(--bb);border-right:10px solid transparent;pointer-events:none}
-body[data-cs=bubble] .m small{display:flex;justify-content:flex-end;align-items:center;gap:6px}
-body[data-cs=bubble] .m small::after{content:"\2713\2713";color:#53bdeb;font-weight:900;letter-spacing:-.22em;margin-left:2px}
-body[data-cs=neon] .r{background:color-mix(in srgb,var(--bg) 92%,var(--cc,var(--ac)));border:1.5px solid var(--cc,var(--ac));box-shadow:0 0 0 1px color-mix(in srgb,var(--cc,var(--ac)) 22%,transparent),0 0 16px -2px var(--cc,var(--ac)),inset 0 0 18px -8px var(--cc,var(--ac))}
-body[data-cs=neon] .m b{text-shadow:0 0 10px color-mix(in srgb,var(--cc,var(--ac)) 65%,transparent)}
-body[data-cs=neumorph] .r{background:var(--bg);border:0;box-shadow:6px 6px 14px color-mix(in srgb,var(--bg) 82%,#000),-6px -6px 14px color-mix(in srgb,var(--bg) 86%,#fff);margin:0 8px}
-body[data-cs=gradient] .r{border:1.5px solid transparent;background:linear-gradient(var(--sf),var(--sf)) padding-box,linear-gradient(135deg,var(--cc,var(--ac)),color-mix(in srgb,var(--cc,var(--ac)) 45%,#c14ff0),color-mix(in srgb,var(--cc,var(--ac)) 25%,transparent)) border-box;box-shadow:0 10px 26px -16px var(--cc,var(--ac))}
-body[data-cs=window] .r{background:var(--sf);border:1px solid color-mix(in srgb,var(--tx) 18%,transparent);border-radius:10px;padding-top:26px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6)}
-body[data-cs=window] .r::after{content:"";position:absolute;left:0;right:0;top:0;height:24px;pointer-events:none;z-index:2;border-bottom:1px solid color-mix(in srgb,var(--tx) 12%,transparent);background:radial-gradient(circle at 14px 12px,#ff5f57 4px,transparent 4.5px),radial-gradient(circle at 30px 12px,#febc2e 4px,transparent 4.5px),radial-gradient(circle at 46px 12px,#28c840 4px,transparent 4.5px),color-mix(in srgb,var(--tx) 7%,var(--sf))}
+
+/* ===== Card styles v2 =====
+   Every style follows one contract so it behaves the same in light, dark and true dark, in the list,
+   when expanded, with the Edge setting and in the Settings preview tiles:
+   surface (background) | edge (border) | lift (shadow, --ss, composed with the Edge setting's --es)
+   | mark (how the category colour shows) | chrome sized in --u so previews scale exactly.
+   Selectors are body[data-cs=X] .r for the list and .csp[data-cs=X] .rp for the preview tiles. */
+:root{--u:calc(1px*var(--ts,1));--c-tint:12%;--a-wash:11%;--n-ring:14%;--n-glow:55%;--n-in:0%;--n-tube:84%;--glow-a:0%;
+ --e-hi:rgba(255,255,255,.95);--e-lo:rgba(52,76,112,.27);--e-rim:rgba(255,255,255,.6);--e-face:var(--bg)}
+[data-t=dark]{--c-tint:17%;--a-wash:21%;--n-ring:22%;--n-glow:100%;--n-in:100%;--n-tube:100%;--glow-a:62%;
+ --e-hi:rgba(255,255,255,.055);--e-lo:rgba(0,0,0,.72);--e-rim:rgba(255,255,255,.08);--e-face:color-mix(in srgb,var(--bg) 91%,#fff)}
+.r{--k:var(--cc,var(--ac))}
+/* shared: equal side padding, no empty body strip under plain links, composed shadows, quiet tags in light mode */
+body:not([data-vw=grid]) .r .h{padding-right:14px}
+.r .bd:empty{display:none}
+body .r,body .r.o{box-shadow:var(--ss,0 0 #0000),var(--es,0 0 #0000)}
+[data-t=light] .m small .tg{text-shadow:none}
+body[data-vw=grid] .r::after{display:none!important}
+.r.sl{outline:2px solid var(--ac);outline-offset:2px}
+/* Settings preview tiles */
+.cst{position:relative;display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-x:contain;padding:4px 3px 6px;margin:0 -3px}
+.cst::-webkit-scrollbar{display:none}
+.cst>button{flex:0 0 118px;scroll-snap-align:start;display:grid;gap:6px;padding:0;background:none;text-align:center;border-radius:14px}
+.cst>button>span{font:600 12px var(--ff,system-ui);color:var(--mu)}
+.cst>button.on>span{color:var(--tx)}
+.csp{--u:.5px;font-size:10px;line-height:1.25;padding:10px 12px 11px;background:var(--bg);border:1px solid var(--bd);border-radius:12px;overflow:hidden;pointer-events:none;text-align:left}
+.cst>button.on .csp{outline:2px solid var(--ac);outline-offset:1px;border-color:transparent}
+.cst .csp .rp{content-visibility:visible;margin-top:0;margin-bottom:0}
+.cst .csp .rp .h{padding:7px 8px;gap:7px}
+.cst .csp .rp .ic{width:22px;height:22px;font-size:11px;border-radius:7px}
+.cst .csp .rp .m b{font-size:1.06em;line-height:1.2;-webkit-line-clamp:1}
+.cst .csp .rp .m small{margin-top:2px}
+.csp[data-cs=window] .rp{--w1:#ff5f57;--w2:#febc2e;--w3:#28c840}
+body[data-cs=tint] .r:where(:not(.rp)),.csp[data-cs=tint] .rp{background:color-mix(in srgb,var(--k) var(--c-tint),var(--sf));border-color:color-mix(in srgb,var(--k) 32%,transparent)}
+body[data-cs=tint] .r:where(:not(.rp)).o,.csp[data-cs=tint] .rp.o{border-color:color-mix(in srgb,var(--k) 52%,transparent)}
+body[data-cs=line] .r:where(:not(.rp)),.csp[data-cs=line] .rp{background:transparent;border:1.5px solid color-mix(in srgb,var(--k) 58%,var(--bd))}
+body[data-cs=line] .r:where(:not(.rp)).o,.csp[data-cs=line] .rp.o{border-color:color-mix(in srgb,var(--k) 88%,var(--bd))}
+body[data-cs=sketch] .r:where(:not(.rp)),.csp[data-cs=sketch] .rp{background:color-mix(in srgb,var(--sf) 60%,transparent);border-color:transparent;border-radius:calc(6px + var(--rad,10px)*.3)}
+body[data-cs=sketch] .r:where(:not(.rp))::after,.csp[data-cs=sketch] .rp::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:color-mix(in srgb,var(--k) 72%,var(--tx));-webkit-mask-box-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27 viewBox=%270 0 200 200%27%3E%3Cpath d=%27M23.0 5.9C25.9 4.9 18.7 6.8 23.0 6.8C27.3 6.9 40.1 6.3 48.7 6.0C57.2 5.8 65.8 5.3 74.3 5.4C82.9 5.4 91.4 6.3 100.0 6.3C108.6 6.2 117.1 5.4 125.7 5.2C134.2 5.0 140.9 4.7 151.3 5.2C161.7 5.7 180.9 5.3 188.1 8.2C195.2 11.0 193.1 19.8 194.2 22.3C195.4 24.7 195.0 18.6 195.0 23.0C195.0 27.4 194.6 40.1 194.3 48.7C194.0 57.2 193.4 65.8 193.3 74.3C193.3 82.9 194.0 91.4 194.1 100.0C194.1 108.6 193.5 117.1 193.4 125.7C193.2 134.2 193.0 140.9 193.1 151.3C193.2 161.7 195.2 180.9 193.9 188.1C192.7 195.2 188.3 193.4 185.5 194.4C182.7 195.4 182.7 194.3 177.0 194.3C171.3 194.3 159.9 194.4 151.3 194.3C142.8 194.2 134.2 193.4 125.7 193.6C117.1 193.7 108.6 194.8 100.0 195.0C91.4 195.1 82.9 194.7 74.3 194.4C65.8 194.2 59.2 193.6 48.7 193.5C38.1 193.3 18.3 195.4 11.1 193.7C3.9 192.1 6.2 186.6 5.5 183.8C4.7 181.0 6.3 182.4 6.5 177.0C6.7 171.6 6.6 159.9 6.7 151.3C6.8 142.8 7.2 134.2 6.9 125.7C6.6 117.1 5.0 108.6 5.0 100.0C5.0 91.4 6.5 82.9 6.8 74.3C7.1 65.8 7.2 58.9 7.0 48.7C6.7 38.4 2.8 19.9 5.5 12.8C8.2 5.7 20.1 6.9 23.0 5.9Z%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%274%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M5.6 15.8C14.7 15.6 37.6 14.7 60.0 14.4C82.4 14.0 117.9 13.5 140.0 13.8C162.1 14.2 183.6 16.0 192.3 16.4%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M185.8 9.2C185.5 17.6 184.6 38.2 184.3 60.0C184.0 81.8 184.0 117.4 183.9 140.0C183.8 162.6 183.7 186.3 183.7 195.6%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M191.2 185.2C182.7 185.1 161.9 185.0 140.0 184.9C118.1 184.7 82.5 184.3 60.0 184.1C37.5 184.0 14.1 183.9 4.9 183.9%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M15.4 190.8C15.3 182.3 15.0 161.8 14.8 140.0C14.6 118.2 14.3 82.8 14.2 60.0C14.1 37.2 14.3 12.7 14.3 3.2%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 44 / 22px stretch}
+body[data-cs=sketch] .r:where(:not(.rp)):nth-of-type(4n+2)::after,.csp[data-cs=sketch] .rp:nth-of-type(4n+2)::after{-webkit-mask-box-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27 viewBox=%270 0 200 200%27%3E%3Cpath d=%27M23.0 6.7C25.8 5.7 18.7 6.9 23.0 6.8C27.3 6.7 40.1 6.3 48.7 6.2C57.2 6.1 65.8 6.2 74.3 6.1C82.9 5.9 91.4 5.5 100.0 5.4C108.6 5.3 117.1 5.5 125.7 5.4C134.2 5.4 140.9 4.8 151.3 5.0C161.7 5.3 180.9 4.1 188.1 7.0C195.2 10.0 193.3 20.2 194.3 22.9C195.2 25.5 194.1 18.7 194.0 23.0C193.9 27.3 193.6 40.1 193.7 48.7C193.8 57.2 194.5 65.8 194.6 74.3C194.7 82.9 194.3 91.4 194.3 100.0C194.4 108.6 194.9 117.1 194.9 125.7C195.0 134.2 194.7 140.9 194.5 151.3C194.4 161.7 195.6 180.9 194.1 188.1C192.6 195.2 188.3 193.3 185.5 194.2C182.7 195.0 182.7 193.1 177.0 193.2C171.3 193.2 159.9 194.3 151.3 194.4C142.8 194.6 134.2 194.1 125.7 193.9C117.1 193.7 108.6 193.4 100.0 193.4C91.4 193.3 82.9 193.6 74.3 193.6C65.8 193.7 59.2 193.4 48.7 193.4C38.1 193.4 18.3 195.1 11.1 193.5C3.9 191.9 6.5 186.6 5.5 183.8C4.5 181.0 5.0 182.4 5.1 177.0C5.2 171.6 6.0 159.9 6.1 151.3C6.2 142.8 5.8 134.2 5.7 125.7C5.6 117.1 5.4 108.6 5.6 100.0C5.7 91.4 6.6 82.9 6.6 74.3C6.5 65.8 5.6 58.9 5.5 48.7C5.5 38.4 3.4 19.8 6.3 12.8C9.3 5.8 20.2 7.7 23.0 6.7Z%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%274%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M5.0 16.0C14.2 15.7 37.5 14.4 60.0 14.3C82.5 14.1 117.3 15.0 140.0 15.1C162.7 15.3 187.0 15.3 196.4 15.3%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M186.3 8.8C186.3 17.4 186.8 38.1 186.3 60.0C185.9 81.9 184.0 118.3 183.8 140.0C183.5 161.7 184.6 181.8 184.7 190.2%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M195.7 185.6C186.4 185.7 162.6 186.3 140.0 186.3C117.4 186.4 82.8 186.1 60.0 185.9C37.2 185.7 12.8 185.2 3.4 185.1%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M16.5 195.2C16.1 186.0 14.6 162.5 14.6 140.0C14.5 117.5 16.3 81.9 16.3 60.0C16.3 38.1 14.9 17.2 14.6 8.6%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 44 / 22px stretch}
+body[data-cs=sketch] .r:where(:not(.rp)):nth-of-type(4n+3)::after,.csp[data-cs=sketch] .rp:nth-of-type(4n+3)::after{-webkit-mask-box-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27 viewBox=%270 0 200 200%27%3E%3Cpath d=%27M23.0 6.3C25.8 5.2 18.7 6.2 23.0 6.2C27.3 6.3 40.1 6.7 48.7 6.7C57.2 6.7 65.8 6.4 74.3 6.3C82.9 6.2 91.4 6.0 100.0 6.1C108.6 6.1 117.1 6.4 125.7 6.4C134.2 6.3 140.9 5.4 151.3 5.6C161.7 5.8 180.9 4.6 188.1 7.5C195.2 10.4 193.1 20.3 194.3 22.9C195.4 25.5 194.9 18.7 194.9 23.0C195.0 27.3 195.0 40.1 194.7 48.7C194.4 57.2 193.3 65.8 193.2 74.3C193.0 82.9 193.5 91.4 193.7 100.0C194.0 108.6 194.6 117.1 194.7 125.7C194.7 134.2 194.5 140.9 194.3 151.3C194.1 161.7 194.9 180.9 193.4 188.1C192.0 195.2 188.2 193.1 185.5 194.0C182.8 195.0 182.7 193.8 177.0 193.8C171.3 193.9 159.9 194.4 151.3 194.3C142.8 194.2 134.2 193.3 125.7 193.1C117.1 192.9 108.6 193.0 100.0 193.0C91.4 193.1 82.9 193.1 74.3 193.3C65.8 193.6 59.2 194.3 48.7 194.5C38.1 194.6 18.3 196.3 11.1 194.5C3.9 192.7 6.4 186.7 5.7 183.8C4.9 180.9 6.4 182.4 6.4 177.0C6.5 171.6 6.1 159.9 6.0 151.3C6.0 142.8 6.2 134.2 6.2 125.7C6.3 117.1 6.6 108.6 6.4 100.0C6.3 91.4 5.6 82.9 5.4 74.3C5.2 65.8 5.0 58.9 5.1 48.7C5.2 38.4 3.1 19.9 6.1 12.8C9.1 5.7 20.2 7.4 23.0 6.3Z%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%274%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10.0 15.4C18.3 15.2 38.3 13.9 60.0 13.8C81.7 13.8 117.9 15.5 140.0 15.4C162.1 15.4 183.7 13.9 192.4 13.6%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M186.5 9.6C186.1 18.0 184.3 38.3 184.0 60.0C183.8 81.7 185.0 117.7 185.0 140.0C185.0 162.3 184.4 184.8 184.2 193.7%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M193.3 185.2C184.4 185.2 162.2 185.3 140.0 185.1C117.8 185.0 81.9 184.3 60.0 184.4C38.1 184.5 17.1 185.4 8.5 185.6%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M14.8 193.6C15.0 184.7 16.4 162.3 16.2 140.0C16.0 117.7 13.9 82.3 13.6 60.0C13.3 37.7 14.2 15.0 14.3 6.1%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 44 / 22px stretch}
+body[data-cs=sketch] .r:where(:not(.rp)):nth-of-type(4n+4)::after,.csp[data-cs=sketch] .rp:nth-of-type(4n+4)::after{-webkit-mask-box-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27 viewBox=%270 0 200 200%27%3E%3Cpath d=%27M23.0 5.8C25.8 4.6 18.7 5.3 23.0 5.3C27.3 5.4 40.1 6.0 48.7 6.2C57.2 6.3 65.8 6.1 74.3 6.1C82.9 6.2 91.4 6.4 100.0 6.5C108.6 6.5 117.1 6.5 125.7 6.6C134.2 6.6 140.9 6.5 151.3 6.7C161.7 6.9 181.0 5.0 188.1 7.6C195.1 10.2 192.5 19.9 193.6 22.4C194.7 25.0 194.3 18.6 194.4 23.0C194.6 27.4 194.5 40.1 194.3 48.7C194.1 57.2 193.3 65.8 193.1 74.3C192.9 82.9 192.8 91.4 193.1 100.0C193.3 108.6 194.5 117.1 194.7 125.7C194.9 134.2 194.6 140.9 194.5 151.3C194.3 161.7 195.0 180.9 193.6 188.1C192.1 195.2 188.3 193.1 185.5 194.2C182.7 195.3 182.7 194.7 177.0 194.8C171.3 195.0 159.9 195.2 151.3 195.0C142.8 194.8 134.2 193.8 125.7 193.6C117.1 193.5 108.6 194.0 100.0 194.2C91.4 194.4 82.9 194.9 74.3 194.8C65.8 194.7 59.2 193.8 48.7 193.6C38.1 193.4 18.2 195.2 11.1 193.6C4.0 191.9 7.1 186.6 6.2 183.8C5.3 181.0 5.9 182.4 5.8 177.0C5.8 171.6 6.1 159.9 6.0 151.3C5.9 142.8 5.1 134.2 5.0 125.7C5.0 117.1 5.8 108.6 5.9 100.0C6.1 91.4 5.8 82.9 5.9 74.3C5.9 65.8 6.0 58.9 6.1 48.7C6.1 38.4 3.4 19.9 6.2 12.8C9.0 5.7 20.2 7.1 23.0 5.8Z%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%274%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M7.7 13.9C16.5 13.9 38.0 13.8 60.0 13.8C82.0 13.7 117.3 13.3 140.0 13.7C162.7 14.1 186.7 15.7 196.0 16.1%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M185.8 9.2C185.7 17.7 185.7 38.2 185.4 60.0C185.1 81.8 183.8 117.6 184.0 140.0C184.1 162.4 185.8 185.5 186.2 194.6%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M195.2 185.3C186.0 185.2 162.5 184.7 140.0 184.8C117.5 184.9 82.8 186.1 60.0 186.0C37.2 185.9 12.7 184.5 3.3 184.2%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M14.8 195.1C14.9 185.9 15.5 162.5 15.5 140.0C15.5 117.5 14.9 82.8 14.7 60.0C14.6 37.2 14.8 12.7 14.9 3.2%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 44 / 22px stretch}
+@supports not (-webkit-mask-box-image:url(x)){body[data-cs=sketch] .r:where(:not(.rp)),.csp[data-cs=sketch] .rp{border:1.5px dashed color-mix(in srgb,var(--k) 62%,var(--tx))}}
+body[data-cs=bubble] .r:where(:not(.rp)),.csp[data-cs=bubble] .rp{--bb:color-mix(in srgb,var(--k) 30%,var(--sf));--br:max(var(--rad,14px),16px);overflow:visible;content-visibility:visible;background:var(--bb);border:0;border-radius:var(--br) var(--br) 0 var(--br);margin-right:calc(11*var(--u))}
+body[data-cs=bubble]:not([data-vw=grid]) .r:where(:not(.rp)){align-self:flex-end;width:fit-content;min-width:68%;max-width:calc(94% - 11px)}
+body[data-cs=bubble]:not([data-vw=grid]) .r.o:where(:not(.rp)){width:calc(94% - 11px)}
+body[data-cs=bubble] .r:where(:not(.rp)) .m small,.csp[data-cs=bubble] .rp .m small{justify-content:flex-end}
+body[data-cs=bubble] .r:where(:not(.rp))::after,.csp[data-cs=bubble] .rp::after{content:"";position:absolute;right:calc(-11*var(--u));bottom:0;width:calc(12*var(--u));height:calc(16*var(--u));background:var(--bb);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 16%27%3E%3Cpath d=%27M0 0V16H2.6C6.4 16 10 15.2 12 13.4 8.2 12.9 4.6 10.2 2.6 5.6L0 0Z%27/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 16%27%3E%3Cpath d=%27M0 0V16H2.6C6.4 16 10 15.2 12 13.4 8.2 12.9 4.6 10.2 2.6 5.6L0 0Z%27/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;pointer-events:none}
+body[data-cs=neon] .r:where(:not(.rp)),.csp[data-cs=neon] .rp{background:color-mix(in srgb,var(--k) 7%,var(--sf));border:1.5px solid color-mix(in srgb,var(--k) var(--n-tube),#000);--ss:0 0 0 1px color-mix(in srgb,var(--k) var(--n-ring),transparent),0 0 16px -2px color-mix(in srgb,var(--k) var(--n-glow),transparent),inset 0 0 18px -8px color-mix(in srgb,var(--k) var(--n-in),transparent)}
+body[data-cs=neon] .r:where(:not(.rp)) .m b,.csp[data-cs=neon] .rp .m b{text-shadow:0 0 10px color-mix(in srgb,var(--k) var(--glow-a),transparent)}
+body[data-cs=neumorph] .r:where(:not(.rp)),.csp[data-cs=neumorph] .rp{background:var(--e-face);border:1px solid transparent;margin-inline:calc(6*var(--u));--ss:calc(7*var(--u)) calc(7*var(--u)) calc(16*var(--u)) var(--e-lo),calc(-6*var(--u)) calc(-6*var(--u)) calc(14*var(--u)) var(--e-hi),inset 1px 1px 0 var(--e-rim)}
+body[data-cs=neumorph] .r:where(:not(.rp)).o,.csp[data-cs=neumorph] .rp.o{--ss:inset calc(5*var(--u)) calc(5*var(--u)) calc(11*var(--u)) var(--e-lo),inset calc(-5*var(--u)) calc(-5*var(--u)) calc(11*var(--u)) var(--e-hi)}
+body[data-cs=neumorph] .r:where(:not(.rp)) .h,.csp[data-cs=neumorph] .rp .h{padding-right:calc(34*var(--u))}
+body[data-cs=neumorph] .r:where(:not(.rp))::after,.csp[data-cs=neumorph] .rp::after{content:"";position:absolute;top:calc(15*var(--u));right:calc(15*var(--u));width:calc(7*var(--u));height:calc(7*var(--u));border-radius:50%;background:var(--k);box-shadow:0 0 calc(7*var(--u)) calc(1*var(--u)) color-mix(in srgb,var(--k) 75%,transparent),0 0 0 calc(2.5*var(--u)) var(--e-face),0 0 0 calc(3.5*var(--u)) var(--e-lo);pointer-events:none}
+body[data-cs=gradient] .r:where(:not(.rp)),.csp[data-cs=gradient] .rp{border:1.5px solid transparent;background:radial-gradient(120% 150% at 0% 0%,color-mix(in srgb,var(--k) var(--a-wash),transparent),transparent 65%) padding-box,linear-gradient(var(--sf),var(--sf)) padding-box,linear-gradient(135deg,var(--k),color-mix(in srgb,var(--k) 45%,var(--ac2,var(--ac))) 55%,color-mix(in srgb,var(--k) 18%,transparent)) border-box;--ss:0 10px 26px -16px var(--k)}
+body[data-cs=window] .r:where(:not(.rp)),.csp[data-cs=window] .rp{--bar:calc(28*var(--u));--w1:color-mix(in srgb,var(--tx) 24%,transparent);--w2:var(--w1);--w3:var(--w1);background:var(--sf);border:1px solid color-mix(in srgb,var(--tx) 16%,transparent);border-radius:min(var(--rad,10px),14px);padding-top:var(--bar);--ss:0 10px 24px -14px rgba(0,0,0,.55)}
+body[data-cs=window] .r:where(:not(.rp)).o,.csp[data-cs=window] .rp.o{--w1:#ff5f57;--w2:#febc2e;--w3:#28c840}
+body[data-cs=window] .r:where(:not(.rp))::after,.csp[data-cs=window] .rp::after{content:attr(data-bar);position:absolute;left:0;right:0;top:0;height:var(--bar);box-sizing:border-box;z-index:2;pointer-events:none;padding:0 calc(66*var(--u));font:600 calc(11*var(--u))/calc(26*var(--u)) var(--ff,system-ui);text-align:center;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:calc(2*var(--u)) solid var(--k);border-bottom:1px solid color-mix(in srgb,var(--tx) 12%,transparent);background:radial-gradient(circle at calc(14*var(--u)) 50%,var(--w1) calc(4*var(--u)),transparent calc(4.6*var(--u))),radial-gradient(circle at calc(30*var(--u)) 50%,var(--w2) calc(4*var(--u)),transparent calc(4.6*var(--u))),radial-gradient(circle at calc(46*var(--u)) 50%,var(--w3) calc(4*var(--u)),transparent calc(4.6*var(--u))),color-mix(in srgb,var(--tx) 6%,var(--sf))}
+body[data-cs=bookmark] .r:where(:not(.rp)),.csp[data-cs=bookmark] .rp{background:var(--sf);border:1px solid color-mix(in srgb,var(--tx) 14%,transparent);--ss:0 1px 0 color-mix(in srgb,var(--tx) 7%,transparent),0 12px 20px -16px rgba(0,0,0,.5)}
+body[data-cs=bookmark] .r:where(:not(.rp)) .h,.csp[data-cs=bookmark] .rp .h{padding-right:calc(40*var(--u))}
+body[data-cs=bookmark] .r:where(:not(.rp))::after,.csp[data-cs=bookmark] .rp::after{content:"";position:absolute;top:-1px;right:calc(15*var(--u));width:calc(14*var(--u));height:calc(32*var(--u));background:linear-gradient(90deg,rgba(255,255,255,.2),transparent 45%,rgba(0,0,0,.16)),var(--k);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);pointer-events:none;z-index:2}
+body[data-cs=bookmark] .r:where(:not(.rp)).o::after,.csp[data-cs=bookmark] .rp.o::after{height:calc(42*var(--u))}
+body[data-cs=bookmark] .r:where(:not(.rp)).d::after,.csp[data-cs=bookmark] .rp.d::after{background:color-mix(in srgb,var(--tx) 30%,transparent)}
+body[data-vw=grid] :where(.list) .r{padding-top:0!important;margin-inline:0!important}
+body[data-vw=grid] :where(.list) .r .h{padding:4px!important}
+body[data-vw=grid] .r::after{display:none!important}
 </style>
 </body></html>
