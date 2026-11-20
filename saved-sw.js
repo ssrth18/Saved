@@ -1,4 +1,4 @@
-const V="saved-v3",FILES=["./saved.html","./saved.webmanifest","./icons/saved-192.png","./icons/saved-512.png","./icons/saved-apple.png"];
+const V="saved-v4",FILES=["./saved.html","./saved.webmanifest","./icons/saved-192.png","./icons/saved-512.png","./icons/saved-apple.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{const r=e.request;if(r.method!=="GET")return;const u=new URL(r.url);if(u.origin!==location.origin)return;
