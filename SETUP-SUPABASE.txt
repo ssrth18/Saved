@@ -23,3 +23,8 @@ HOW IT WORKS
 - Items, deletes, card order, categories and your look all sync. Last change wins per item.
 - "Turn off sync on this device" keeps your items on the device and just stops syncing.
 - Optional: paste your URL and key into window.SB_DEFAULT in saved.html so new devices only need the code.
+
+KEEP PRIVATE
+- Your 16-character sync code is a password. Do not put it in the repository, a README or a screenshot.
+  If it ever leaks: Sync > turn off, then create a new code.
+- The Project URL and the publishable key may be public. The service_role / secret key must never be.

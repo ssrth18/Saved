@@ -1104,9 +1104,11 @@ create table if not exists public.saved_settings (
 
 -- 3) Server-side timestamp on every insert/update
 create or replace function public.saved_touch()
-returns trigger language plpgsql as $$
+returns trigger language plpgsql
+set search_path = ''
+as $$
 begin
-  new.synced_at := now();
+  new.synced_at := pg_catalog.now();
   return new;
 end $$;
 

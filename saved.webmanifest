@@ -1,40 +1,26 @@
 {
- "name": "Saved",
- "short_name": "Saved",
- "description": "Save links, notes and words in one place.",
- "start_url": "./saved.html",
- "scope": "./",
- "display": "standalone",
- "orientation": "portrait",
- "background_color": "#05070d",
- "theme_color": "#05070d",
- "icons": [
-  {
-   "src": "icons/saved-192.png",
-   "sizes": "192x192",
-   "type": "image/png",
-   "purpose": "any"
-  },
-  {
-   "src": "icons/saved-512.png",
-   "sizes": "512x512",
-   "type": "image/png",
-   "purpose": "any"
-  },
-  {
-   "src": "icons/saved-512-maskable.png",
-   "sizes": "512x512",
-   "type": "image/png",
-   "purpose": "maskable"
+  "id": "./saved.html",
+  "name": "Saved",
+  "short_name": "Saved",
+  "description": "Save links, notes and words in one place.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./saved.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    { "src": "icons/saved-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/saved-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/saved-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "share_target": {
+    "action": "./saved.html",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": { "title": "title", "text": "text", "url": "url" }
   }
- ],
- "share_target": {
-  "action": "./saved.html",
-  "method": "GET",
-  "params": {
-   "title": "title",
-   "text": "text",
-   "url": "url"
-  }
- }
 }
