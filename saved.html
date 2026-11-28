@@ -621,7 +621,7 @@ function theme(){const dk=S.theme==="dark"||(S.theme==="auto"&&mq.matches),P=S.p
  if(dk&&S.dbgc){st.setProperty("--bg",S.dbgc);st.setProperty("--sf",`color-mix(in srgb,${S.dbgc} 90%,#fff)`)}else if(dk&&S.dark==="black"){st.setProperty("--bg","#000");st.setProperty("--sf","#0e0e12")}else if(!dk&&S.bgc){st.setProperty("--bg",S.bgc);st.setProperty("--sf",`color-mix(in srgb,${S.bgc} 30%,#fff)`)}else{st.removeProperty("--bg");st.removeProperty("--sf")}
  $("meta[name=theme-color]").content=dk?(S.dark==="black"?"#000":(S.dbgc||"#13141f")):(S.bgc||"#f4f3fa");look()}
 function look(){fxApply();const st=document.documentElement.style,b=document.body;st.setProperty("--rad",S.rad+"px");st.setProperty("--gap",{tight:"7px",normal:"12px",airy:"18px"}[S.dens]||"12px");st.setProperty("--isz",S.isz+"px");st.setProperty("--ts",S.tsz/100);st.setProperty("--bsz",S.bsz+"px");st.setProperty("--tl",S.tl);st.setProperty("--ff",FF[S.ff]||FF.round);st.setProperty("--spd",100/S.spd);st.setProperty("--bgs",S.bgs/100);
- Object.entries({width:S.width,cs:(window.CSMAP[S.cs]||S.cs),cm:S.cm,cc:S.cchip,cnt:S.cnt,tabs:S.tabs,shape:S.ish,tone:S.itn,ring:S.irg,shd:S.ishd,tw:S.tw,ssub:S.ssub,bg:S.bg,ent:S.ent,vw:S.vw,lk:S.look||"",wild:S.wild?1:0}).forEach(([k,v])=>b.dataset[k]=v)}
+ Object.entries({width:S.width,cs:(window.CSMAP[S.cs]||S.cs),pl:(S.look||""),cm:S.cm,cc:S.cchip,cnt:S.cnt,tabs:S.tabs,shape:S.ish,tone:S.itn,ring:S.irg,shd:S.ishd,tw:S.tw,ssub:S.ssub,bg:S.bg,ent:S.ent,vw:S.vw,lk:S.look||"",wild:S.wild?1:0}).forEach(([k,v])=>b.dataset[k]=v)}
 mq.addEventListener("change",theme);
 const isO=id=>!!S.exp!==flip.has(id);
 /* render */
@@ -972,7 +972,7 @@ async function clip(){if(S.clip==="off"||document.hidden||!document.hasFocus()||
 addEventListener("focus",()=>setTimeout(clip,250));document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout(clip,250)});setTimeout(clip,900);
 /* v8: header styles, section markers, preset looks, redesigned settings */
 {Object.keys(PAL).forEach(k=>delete PAL[k]);
- Object.assign(PAL,{Indigo:["#4f46e5","#4f46e5","#818cf8","#818cf8"],Cyan:["#0891b2","#0891b2","#22d3ee","#22d3ee"],Blue:["#2563eb","#2563eb","#60a5fa","#60a5fa"],Violet:["#6d4ae0","#6d4ae0","#a78bfa","#a78bfa"],Emerald:["#059669","#059669","#34d399","#34d399"],Amber:["#d97706","#d97706","#fbbf24","#fbbf24"],Rose:["#e11d48","#e11d48","#fb7185","#fb7185"],Slate:["#334155","#334155","#e2e8f0","#e2e8f0"]});
+ Object.assign(PAL,{Ember:["#ea4a1f","#ea4a1f","#ff5a2d","#ff5a2d"],Indigo:["#4f46e5","#4f46e5","#818cf8","#818cf8"],Cyan:["#0891b2","#0891b2","#22d3ee","#22d3ee"],Blue:["#2563eb","#2563eb","#60a5fa","#60a5fa"],Violet:["#6d4ae0","#6d4ae0","#a78bfa","#a78bfa"],Emerald:["#059669","#059669","#34d399","#34d399"],Amber:["#d97706","#d97706","#fbbf24","#fbbf24"],Rose:["#e11d48","#e11d48","#fb7185","#fb7185"],Slate:["#334155","#334155","#e2e8f0","#e2e8f0"]});
  FF.ed='"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif';
  if(!S.v6){S.v6=1;Object.assign(S,{bgc:"",dbgc:"",wp:"none",fxk:"none",dark:"soft",ent:"none",mix:"solid"})}
  if(!S.v7){S.v7=1;Object.assign(S,{theme:"dark",pal:"Cyan",ff:"sys"})}
@@ -983,6 +983,7 @@ addEventListener("focus",()=>setTimeout(clip,250));document.addEventListener("vi
  const th0=theme;theme=function(){th0();const m=$("meta[name=theme-color]");if(m)m.content=getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()||"#f4f1ea"};
  const lk0=look;look=function(){lk0();const b=document.body;b.dataset.edge=(window.EMAP[S.edge]||S.edge||"off");b.dataset.sm=S.sm||"fog";b.dataset.hs=S.hs||"brand";b.dataset.hg=S.hg||"on";document.documentElement.style.setProperty("--ca",S.ca||"#a855f7")};
  const LOOKS=[
+  {n:"Ember",m:"dark",p:"Ember",bd:"#0b0b0c",cs:"line",r:14,f:"inter",e:"off",ish:"rounded",sm:"line",dens:"normal"},
   {n:"Classic",m:"light",p:"Blue",bl:"#f8f4ea",cs:"line",r:10,f:"serif",e:"hair",ish:"rounded",sm:"paren"},
   {n:"Modern",m:"light",p:"Violet",bl:"#f4f5f9",cs:"neumorph",r:20,f:"inter",e:"under",ish:"rounded",sm:"rail"},
   {n:"Aesthetic",m:"light",p:"Rose",bl:"#fff3f1",cs:"tint",r:26,f:"frau",e:"under",ish:"circle",sm:"swoosh",wp:"blossom",fx:"sparkle"},
@@ -1780,5 +1781,29 @@ body[data-cs=window] .r:where(:not(.rp)) .wb u,.csp[data-cs=window] .rp .wb u{po
 body[data-cs=window] .r:where(:not(.rp)) .wb u::before,.csp[data-cs=window] .rp .wb u::before{content:"";position:absolute;left:calc(9*var(--u));top:50%;width:calc(7*var(--u));height:calc(7*var(--u));margin-top:calc(-3.5*var(--u));border-radius:50%;background:var(--k)}
 body[data-cs=window] .r:where(:not(.rp)) .wb em,.csp[data-cs=window] .rp .wb em{flex:none;font:600 calc(10.5*var(--u))/1 var(--ff,system-ui);font-style:normal;color:var(--mu)}
 body[data-cs=window] .r:where(:not(.rp)) .m small,.csp[data-cs=window] .rp .m small{display:none}
+/* Ember preset: near-black, warm cream type, a single orange accent, monospace micro-labels, neutral outlined components */
+body[data-pl=Ember]{--sf:#111113;--tx:#f4efe3;--mu:#a29d92;--bd:#2b2b2f}
+body[data-pl=Ember] header h1{background:none;-webkit-text-fill-color:var(--tx);color:var(--tx);text-transform:lowercase;letter-spacing:-.05em;font-weight:800;font-size:1.5em}
+body[data-pl=Ember] header h1::after{content:".";color:var(--ac);-webkit-text-fill-color:var(--ac)}
+body[data-pl=Ember] header button{border:1.5px solid var(--bd);border-radius:14px}
+body[data-pl=Ember] .tabs .chip{background:transparent!important;border:1.5px solid var(--bd)!important;border-radius:14px;color:var(--mu);box-shadow:none!important}
+body[data-pl=Ember] .tabs .chip.on{background:var(--tx)!important;border-color:var(--tx)!important;color:var(--bg)!important;box-shadow:none!important}
+body[data-pl=Ember] .tabs .chip.on *{color:inherit!important;opacity:1}
+body[data-pl=Ember] .fab{background:var(--ac)!important;color:#fff!important;border-radius:14px!important;box-shadow:none!important}
+body[data-pl=Ember] .cg{font:600 .72em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--ac)}
+body[data-pl=Ember] .cg i{display:none}
+body[data-pl=Ember] .cg small{color:var(--ac);opacity:.85}
+body[data-pl=Ember] .cg small::before{content:"\00b7  "}
+body[data-pl=Ember] .r{background:transparent;border:1.5px solid var(--bd);border-radius:14px;box-shadow:none}
+body[data-pl=Ember] .r.o{border-color:var(--ac)}
+body[data-pl=Ember] .m b{letter-spacing:-.025em;font-weight:700}
+body[data-pl=Ember] .m small{font:500 .7em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mu)}
+body[data-pl=Ember] .m small .dt,body[data-pl=Ember] .m small .dt.a0{color:var(--mu)}
+body[data-pl=Ember] .sc[data-k=why]{--c:#facc15!important}
+body[data-pl=Ember] .sc .lb{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;letter-spacing:.14em}
+body[data-pl=Ember] header button{margin-left:6px}
+body[data-pl=Ember] .r .bd{border-top:1px solid var(--bd)!important;border-image:none!important}
+body[data-pl=Ember] .tabs .chip.wv{background:var(--bg)!important;border-radius:14px!important;box-shadow:-10px 0 8px var(--bg)!important}
+body[data-pl=Ember] .sc .lb{background:none!important;-webkit-text-fill-color:var(--c)!important;color:var(--c)!important}
 </style>
 </body></html>
